@@ -21,19 +21,18 @@ const onBoardings = [
   {
     title: "Find a Vacant Seat",
     description:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+      "Locate vacant library seats via real-time seat availability information.",
     img: onboarding1,
   },
   {
     title: "Indoor Navigation",
     description:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+      "Use the shortest path to navigate to a targeted library seat.",
     img: onboarding2,
   },
   {
     title: "Seat Reservation",
-    description:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+    description: "Reserve a seat for yourself while walking to the library.",
     img: onboarding3,
   },
 ];
@@ -141,13 +140,13 @@ const OnBoarding = () => {
                 borderBottomLeftRadius: 30,
                 borderBottomRightRadius: 0,
                 borderTopRightRadius: 0,
-                backgroundColor: COLORS.blue,
+                backgroundColor: "#FFDE59",
               }}
               onPress={() => {
                 console.warn("Button on pressed");
               }}
             >
-              <Text style={{ ...FONTS.h2, color: COLORS.white }}>
+              <Text style={{ ...FONTS.h2, color: COLORS.black }}>
                 {completed ? "Let's Go" : "Skip"}
               </Text>
             </TouchableOpacity>
@@ -219,7 +218,7 @@ const styles = StyleSheet.create({
   },
   dot: {
     borderRadius: SIZES.radius,
-    backgroundColor: COLORS.blue,
+    backgroundColor: "#FFDE59",
     marginHorizontal: SIZES.radius / 2,
   },
 });
