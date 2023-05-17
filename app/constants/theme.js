@@ -2,9 +2,16 @@ import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 export const COLORS = {
+  primary: "#FFDE59", // logo color yellow
+  secondary: "#ffffdc", // lighter yellow
+
   black: "#1E1F20",
   white: "#FFFFFF",
+  green: "#37E39F",
+  red: "#F9A8BA",
   gray: "#6A6A6A",
+  lightGray: "#dbdbdb",
+  lightGray1: "#f5f6fa",
   blue: "#0682FE",
 };
 
@@ -24,6 +31,7 @@ export const SIZES = {
   body2: 22,
   body3: 16,
   body4: 14,
+  body5: 12,
 
   // app dimensions
   width,
@@ -53,6 +61,11 @@ export const FONTS = {
   body4: {
     fontFamily: "Roboto-Regular",
     fontSize: SIZES.body4,
+    lineHeight: 22,
+  },
+  body5: {
+    fontFamily: "Roboto-Regular",
+    fontSize: SIZES.body5,
     lineHeight: 22,
   },
 };

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 // Constants
 import { images, theme } from "../../constants";
@@ -16,7 +17,7 @@ const { onboarding1, onboarding2, onboarding3 } = images;
 // Theme
 const { COLORS, FONTS, SIZES } = theme;
 
-// Dummy Data
+// Data
 const onBoardings = [
   {
     title: "Find a Vacant Seat",
@@ -38,6 +39,8 @@ const onBoardings = [
 ];
 
 const OnBoarding = () => {
+  const navigation = useNavigation();
+
   const [completed, setCompleted] = React.useState(false);
 
   const scrollX = new Animated.Value(0);
@@ -52,6 +55,10 @@ const OnBoarding = () => {
 
     return () => scrollX.removeListener();
   }, []);
+
+  const onSkipGoPressed = () => {
+    navigation.navigate("SignIn");
+  };
 
   // Render
 
@@ -142,9 +149,7 @@ const OnBoarding = () => {
                 borderTopRightRadius: 0,
                 backgroundColor: "#FFDE59",
               }}
-              onPress={() => {
-                console.warn("Button on pressed");
-              }}
+              onPress={onSkipGoPressed}
             >
               <Text style={{ ...FONTS.h2, color: COLORS.black }}>
                 {completed ? "Let's Go" : "Skip"}
@@ -213,7 +218,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: SIZES.padding / 2,
-    marginBottom: SIZES.padding * 3,
+    marginBottom: SIZES.padding * 2.4,
     height: SIZES.padding,
   },
   dot: {
