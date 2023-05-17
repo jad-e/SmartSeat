@@ -20,10 +20,10 @@ import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { forgotpass2 } = images;
 
 import { useNavigation } from "@react-navigation/native";
-import { useForm } from "react-hook-form";
 
 const CODE_REGEX = /^\d{4}$/;
 
+// start
 const ForgotPassword2 = () => {
   const firstInput = useRef();
   const secondInput = useRef();
@@ -31,21 +31,24 @@ const ForgotPassword2 = () => {
   const fourthInput = useRef();
 
   const [otp, setOtp] = useState({ 1: "", 2: "", 3: "", 4: "" });
+  const [error, setError] = useState(false);
 
   const navigation = useNavigation();
-  const { control, handleSubmit } = useForm();
 
-  const onVerifyPressed = (data) => {
-    console.log(data);
-
-    console.log(otp);
-
-    navigation.navigate("ForgotPassword3");
+  const onVerifyPressed = () => {
+    //validation
+    if (!CODE_REGEX.test(otp[1] + otp[2] + otp[3] + otp[4])) {
+      console.log(otp[1] + otp[2] + otp[3] + otp[4]);
+      setError(true);
+    } else {
+      //no error then navigate to next screen
+      setError(false);
+      console.log(otp);
+      navigation.navigate("ForgotPassword3");
+    }
   };
 
-  const onResendPressed = (data) => {
-    console.log("resend pressed");
-
+  const onResendPressed = () => {
     ToastAndroid.showWithGravity(
       "Resent verification code!",
       ToastAndroid.SHORT,
@@ -60,42 +63,22 @@ const ForgotPassword2 = () => {
         <View style={styles.container}>
           <Image
             source={forgotpass2}
-            style={[styles.image, { height: SIZES.height * 0.3 }]}
+            style={styles.image}
             resizeMode="contain"
           />
           <Text style={styles.title}>Verification</Text>
 
           <Text style={styles.text}>
-            Enter the 4 digit code that was sent to your student email address.
+            Enter the 4-digit code that was sent to your student email address.
           </Text>
 
-          <CustomInput
-            name="code"
-            control={control}
-            placeholder="Verification Code"
-            secureTextEntry={false}
-            rules={{
-              required: "Verification code is required.",
-              minLength: {
-                value: 4,
-                message: "Verification code should be 4 numbers long.",
-              },
-              maxLength: {
-                value: 4,
-                message: "Verification code should be 4 numbers long.",
-              },
-              pattern: {
-                value: CODE_REGEX,
-                message: "Verification code should contain numbers only.",
-              },
-            }}
-            marginTop={0}
-            marginBottom={0}
-            keyboardType="numeric"
-          />
-
           <View style={styles.otp_container}>
-            <View style={styles.otp_box}>
+            <View
+              style={[
+                styles.otp_box,
+                { borderColor: error ? "red" : "#f0f0f0" },
+              ]}
+            >
               <TextInput
                 style={styles.otp_text}
                 keyboardType="number-pad"
@@ -108,7 +91,12 @@ const ForgotPassword2 = () => {
               />
             </View>
 
-            <View style={styles.otp_box}>
+            <View
+              style={[
+                styles.otp_box,
+                { borderColor: error ? "red" : "#f0f0f0" },
+              ]}
+            >
               <TextInput
                 style={styles.otp_text}
                 keyboardType="number-pad"
@@ -123,7 +111,12 @@ const ForgotPassword2 = () => {
               />
             </View>
 
-            <View style={styles.otp_box}>
+            <View
+              style={[
+                styles.otp_box,
+                { borderColor: error ? "red" : "#f0f0f0" },
+              ]}
+            >
               <TextInput
                 style={styles.otp_text}
                 keyboardType="number-pad"
@@ -138,7 +131,12 @@ const ForgotPassword2 = () => {
               />
             </View>
 
-            <View style={styles.otp_box}>
+            <View
+              style={[
+                styles.otp_box,
+                { borderColor: error ? "red" : "#f0f0f0" },
+              ]}
+            >
               <TextInput
                 style={styles.otp_text}
                 keyboardType="number-pad"
@@ -152,9 +150,15 @@ const ForgotPassword2 = () => {
             </View>
           </View>
 
+          {error && (
+            <Text style={styles.error}>
+              Verification code should contain 4 numbers.
+            </Text>
+          )}
+
           <CustomButton1
             text="Verify"
-            onPress={handleSubmit(onVerifyPressed)}
+            onPress={onVerifyPressed}
             marginTop={35}
             marginBottom={20}
           />
@@ -173,6 +177,7 @@ const ForgotPassword2 = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: COLORS.white,
     alignItems: "center",
     padding: 35,
@@ -180,35 +185,33 @@ const styles = StyleSheet.create({
     height: SIZES.height,
   },
   image: {
-    marginTop: 10,
-    marginBottom: 25,
-    width: "80%",
-    maxWidth: 500,
-    height: 100,
-    maxHeight: 200,
+    width: 250,
+    height: 250,
+    marginTop: -40,
+    marginBottom: -5,
   },
   title: {
-    fontSize: 20,
+    textAlign: "center",
+    fontSize: 30,
     fontWeight: "bold",
     color: "#051C60",
     marginBottom: 10,
   },
   text: {
-    alignSelf: "stretch",
+    textAlign: "center",
+    fontSize: 15,
     color: "gray",
-    paddingLeft: 16,
     marginBottom: 50,
   },
   otp_container: {
-    marginHorizontal: 20,
-    marginBottom: 20,
-    justifyContent: "space-evenly",
-    alignItems: "center",
+    width: "85%",
     flexDirection: "row",
+    justifyContent: "space-between",
   },
   otp_box: {
+    backgroundColor: "#f0f0f0",
     borderRadius: 5,
-    borderColor: "black",
+    borderColor: "#f0f0f0",
     borderWidth: 0.5,
   },
   otp_text: {
@@ -218,6 +221,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingHorizontal: 18,
     paddingVertical: 10,
+  },
+  error: {
+    color: "red",
+    alignSelf: "stretch",
+    marginLeft: 13,
+    marginTop: 5,
   },
 });
 

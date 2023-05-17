@@ -2,8 +2,8 @@ import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 export const COLORS = {
-  primary: "#7F5DF0", // Light purple
-  secondary: "#5D2DFD", // Dark purple
+  primary: "#FFDE59", // logo color yellow
+  secondary: "#ffffdc", // lighter yellow
 
   black: "#1E1F20",
   white: "#FFFFFF",

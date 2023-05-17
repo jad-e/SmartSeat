@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: SIZES.padding / 2,
-    marginBottom: SIZES.padding * 3,
+    marginBottom: SIZES.padding * 2.4,
     height: SIZES.padding,
   },
   dot: {

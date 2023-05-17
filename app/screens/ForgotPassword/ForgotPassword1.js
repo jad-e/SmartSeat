@@ -25,14 +25,14 @@ const ForgotPassword1 = () => {
         <View style={styles.container}>
           <Image
             source={forgotpass1}
-            style={[styles.image, { height: SIZES.height * 0.3 }]}
+            style={styles.image}
             resizeMode="contain"
           />
           <Text style={styles.title}>Forgot Password</Text>
 
           <Text style={styles.text}>
-            Enter your account username and we will send a verification code to
-            your student email address.
+            Enter your account's username for which you want to reset your
+            password.
           </Text>
 
           <CustomInput
@@ -59,6 +59,7 @@ const ForgotPassword1 = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: COLORS.white,
     alignItems: "center",
     padding: 35,
@@ -66,23 +67,22 @@ const styles = StyleSheet.create({
     height: SIZES.height,
   },
   image: {
-    marginTop: 10,
-    marginBottom: 25,
-    width: "80%",
-    maxWidth: 500,
-    height: 100,
-    maxHeight: 200,
+    width: 250,
+    height: 250,
+    marginTop: -40,
+    marginBottom: -5,
   },
   title: {
-    fontSize: 20,
+    textAlign: "center",
+    fontSize: 30,
     fontWeight: "bold",
     color: "#051C60",
     marginBottom: 10,
   },
   text: {
-    alignSelf: "stretch",
+    textAlign: "center",
+    fontSize: 15,
     color: "gray",
-    paddingLeft: 16,
     marginBottom: 50,
   },
 });

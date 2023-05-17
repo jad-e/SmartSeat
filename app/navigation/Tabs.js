@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
@@ -21,7 +21,9 @@ const Tabs = () => {
           elevation: 0,
           backgroundColor: COLORS.white,
           borderTopColor: "transparent",
-          height: 60,
+          height: 55,
+          paddingTop: 3,
+          alignItems: "center",
         },
         headerShown: false,
       }}

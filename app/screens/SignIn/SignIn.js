@@ -37,11 +37,7 @@ const SignIn = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <Image
-          source={applogo2}
-          style={[styles.logo, { height: SIZES.height * 0.3 }]}
-          resizeMode="contain"
-        />
+        <Image source={applogo2} style={styles.logo} resizeMode="contain" />
 
         <CustomInput
           name="username"
@@ -64,7 +60,7 @@ const SignIn = () => {
         />
 
         <CustomButton1
-          text="SIGN IN"
+          text="Sign In"
           onPress={handleSubmit(onSignInPressed)}
           marginTop={35}
           marginBottom={20}
@@ -83,6 +79,7 @@ const SignIn = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: COLORS.white,
     alignItems: "center",
     padding: 35,
@@ -90,12 +87,10 @@ const styles = StyleSheet.create({
     height: SIZES.height,
   },
   logo: {
-    marginTop: 60,
+    marginTop: 50,
     marginBottom: 25,
-    width: "80%",
-    maxWidth: 500,
-    height: 100,
-    maxHeight: 200,
+    width: 250,
+    height: 250,
   },
 });
 
