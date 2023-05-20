@@ -13,6 +13,7 @@ import {
   ForgotPassword2,
   ForgotPassword3,
   ForgotPassword4,
+  SeatMap,
 } from "./app/screens";
 
 import { Tabs } from "./app/navigation";
@@ -71,6 +72,12 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Tabs}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="SeatMap"
+          component={SeatMap}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
