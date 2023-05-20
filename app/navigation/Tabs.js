@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
 //Screens
-import { Home, Profile } from "../screens";
+import { Home, Reservation, Notifications, Profile } from "../screens";
 import { COLORS, FONTS, icons } from "../constants";
 
 const Tab = createBottomTabNavigator();
@@ -49,7 +49,7 @@ const Tabs = () => {
                   ...FONTS.body5,
                 }}
               >
-                HOME
+                Home
               </Text>
             </View>
           ),
@@ -57,12 +57,12 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="Reservation"
-        component={Profile}
+        component={Reservation}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Image
-                source={icons.settings}
+                source={icons.list}
                 resizeMode="contain"
                 style={{
                   width: 20,
@@ -76,7 +76,34 @@ const Tabs = () => {
                   ...FONTS.body5,
                 }}
               >
-                RESERVATION
+                Reserve
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Notifications"
+        component={Notifications}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Image
+                source={icons.bell}
+                resizeMode="contain"
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: focused ? COLORS.primary : COLORS.black,
+                }}
+              />
+              <Text
+                style={{
+                  color: focused ? COLORS.primary : COLORS.black,
+                  ...FONTS.body5,
+                }}
+              >
+                Notifications
               </Text>
             </View>
           ),
@@ -89,7 +116,7 @@ const Tabs = () => {
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Image
-                source={icons.settings}
+                source={icons.user}
                 resizeMode="contain"
                 style={{
                   width: 20,
@@ -103,7 +130,7 @@ const Tabs = () => {
                   ...FONTS.body5,
                 }}
               >
-                PROFILE
+                Profile
               </Text>
             </View>
           ),

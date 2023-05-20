@@ -10,6 +10,8 @@ export const forgotpass2 = require("../assets/images/forgotpass-2.png");
 export const forgotpass3 = require("../assets/images/forgotpass-3.png");
 export const forgotpass4 = require("../assets/images/forgotpass-4.png");
 
+export const appname = require("../assets/images/appname.png");
+
 export default {
   onboarding1,
   onboarding2,
@@ -20,4 +22,5 @@ export default {
   forgotpass2,
   forgotpass3,
   forgotpass4,
+  appname,
 };
