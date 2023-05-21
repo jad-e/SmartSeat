@@ -55,6 +55,7 @@ export const SIZES = {
   body1: 30,
   body2: 22,
   body3: 16,
+  body3a: 15,
   body4: 14, // normal text
   body4a: 13,
   body5: 12,
@@ -91,6 +92,11 @@ export const FONTS = {
   body3: {
     fontFamily: "Roboto-Regular",
     fontSize: SIZES.body3,
+    lineHeight: 22,
+  },
+  body3a: {
+    fontFamily: "Roboto-Regular",
+    fontSize: SIZES.body3a,
     lineHeight: 22,
   },
   body4: {

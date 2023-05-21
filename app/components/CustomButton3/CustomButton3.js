@@ -1,7 +1,15 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 
-const CustomButton3 = ({ onPress, text, marginTop, marginBottom }) => {
+const CustomButton3 = ({
+  onPress,
+  text,
+  marginTop,
+  marginBottom,
+  fontSize = 15,
+  fontFamily = "Roboto-Bold",
+  lineHeight = 22,
+}) => {
   return (
     <Pressable
       onPress={onPress}
@@ -10,7 +18,18 @@ const CustomButton3 = ({ onPress, text, marginTop, marginBottom }) => {
         { marginTop: marginTop, marginBottom: marginBottom },
       ]}
     >
-      <Text style={styles.text}>{text}</Text>
+      <Text
+        style={[
+          styles.text,
+          {
+            fontSize: fontSize,
+            fontFamily: fontFamily,
+            lineHeight: lineHeight,
+          },
+        ]}
+      >
+        {text}
+      </Text>
     </Pressable>
   );
 };
@@ -22,9 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   text: {
-    fontWeight: "bold",
     color: "grey",
-    fontSize: 15,
   },
 });
 

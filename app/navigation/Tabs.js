@@ -20,7 +20,7 @@ const Tabs = () => {
           right: 0,
           elevation: 0,
           backgroundColor: COLORS.white,
-          borderTopColor: "transparent",
+          borderTopColor: COLORS.lightgray3,
           height: 55,
           paddingTop: 3,
           alignItems: "center",

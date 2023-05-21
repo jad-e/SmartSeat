@@ -10,6 +10,7 @@ import Home from "./Home/Home";
 import Reservation from "./Reservation/Reservation";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
+import ProfileDetail from "./Profile/ProfileDetail";
 import SeatMap from "./Reservation/SeatMap";
 
 export {
@@ -23,5 +24,6 @@ export {
   Reservation,
   Notifications,
   Profile,
+  ProfileDetail,
   SeatMap,
 };
