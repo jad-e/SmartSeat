@@ -15,6 +15,10 @@ export const appname = require("../assets/images/appname.png");
 export const profilepic = require("../assets/images/profile_pic.png");
 export const profilepictest = require("../assets/images/profile_pic_test.jpg");
 
+export const park = require("../assets/images/park.png");
+export const bench = require("../assets/images/bench.png");
+export const windy = require("../assets/images/windy.png");
+
 export default {
   onboarding1,
   onboarding2,
@@ -28,4 +32,7 @@ export default {
   appname,
   profilepic,
   profilepictest,
+  park,
+  bench,
+  windy,
 };
