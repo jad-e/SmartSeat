@@ -16,6 +16,7 @@ const drink = require("../assets/icons/drink.png");
 const no_drink = require("../assets/icons/no_drink.png");
 const chat = require("../assets/icons/chat.png");
 const no_chat = require("../assets/icons/no_chat.png");
+const scan = require("../assets/icons/scan.png");
 
 export default {
   back_arrow,
@@ -36,4 +37,5 @@ export default {
   no_drink,
   chat,
   no_chat,
+  scan,
 };

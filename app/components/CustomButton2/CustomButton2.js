@@ -9,13 +9,14 @@ const CustomButton2 = ({
   fontSize = 15,
   fontFamily = "Roboto-Bold",
   lineHeight = 22,
+  width = "100%",
 }) => {
   return (
     <Pressable
       onPress={onPress}
       style={[
         styles.container,
-        { marginTop: marginTop, marginBottom: marginBottom },
+        { marginTop: marginTop, marginBottom: marginBottom, width: width },
       ]}
     >
       <Text
@@ -36,7 +37,6 @@ const CustomButton2 = ({
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
     paddingTop: 10,
     paddingBottom: 10,
     alignItems: "center",

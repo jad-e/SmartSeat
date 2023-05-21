@@ -17,43 +17,42 @@ import {
   CustomButton1,
   CustomButton2,
   CustomButton3,
-  NoReservation,
-  PendingReservation,
-  ConfirmedReservation,
 } from "../../components";
 
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
-const { profilepic, profilepictest } = images;
+const { park, bench, windy } = images;
 
-function FocusAwareStatusBar(props) {
-  const isFocused = useIsFocused();
-
-  return isFocused ? <StatusBar {...props} /> : null;
-}
-
-const Reservation = () => {
-  // 0 : no reservation
-  // 1: pending reservation
-  // 2: confirmed reservation
-  const [reservationState, setReservationState] = React.useState(2);
+const NoReservation = () => {
+  const navigation = useNavigation();
 
   return (
-    <>
-      <FocusAwareStatusBar
-        barStyle="dark-content"
-        backgroundColor={COLORS.white}
+    <View
+      style={[
+        styles.container,
+        {
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+      ]}
+    >
+      <Image
+        source={park}
+        style={{ height: 150, width: 150, marginBottom: 20, marginTop: -50 }}
       />
-
-      {reservationState == 0 ? (
-        <NoReservation />
-      ) : reservationState == 1 ? (
-        <PendingReservation />
-      ) : (
-        <ConfirmedReservation />
-      )}
-    </>
+      <Text
+        style={{
+          ...FONTS.body4,
+          color: COLORS.black,
+          width: 250,
+          textAlign: "center",
+        }}
+      >
+        You currently don't have a pending seat reservation.
+      </Text>
+    </View>
   );
 };
 
@@ -72,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Reservation;
+export default NoReservation;

@@ -8,4 +8,17 @@ import CustomInput from "./CustomInput/CustomInput";
 
 import Header from "./Header/Header";
 
-export { CustomButton1, CustomButton2, CustomButton3, CustomInput, Header };
+import NoReservation from "./NoReservation/NoReservation";
+import PendingReservation from "./PendingReservation/PendingReservation";
+import ConfirmedReservation from "./ConfirmedReservation/ConfirmedReservation";
+
+export {
+  CustomButton1,
+  CustomButton2,
+  CustomButton3,
+  CustomInput,
+  Header,
+  NoReservation,
+  PendingReservation,
+  ConfirmedReservation,
+};
