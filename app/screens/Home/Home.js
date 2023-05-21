@@ -12,10 +12,16 @@ import React from "react";
 
 import DropShadow from "react-native-drop-shadow";
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { appname } = images;
+
+function FocusAwareStatusBar(props) {
+  const isFocused = useIsFocused();
+
+  return isFocused ? <StatusBar {...props} /> : null;
+}
 
 const Home = () => {
   const navigation = useNavigation();
@@ -106,7 +112,10 @@ const Home = () => {
   function renderHeader() {
     return (
       <>
-        <StatusBar backgroundColor="#FFDE59" />
+        <FocusAwareStatusBar
+          barStyle="light-content"
+          backgroundColor={COLORS.primary}
+        />
 
         <View
           style={{

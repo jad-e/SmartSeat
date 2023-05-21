@@ -64,7 +64,9 @@ const styles = StyleSheet.create({
   },
   input: {
     paddingTop: 7,
-    fontWeight: "bold",
+    fontFamily: "Roboto-Bold",
+    fontSize: 14,
+    lineHeight: 22,
     paddingLeft: 20,
   },
   error: {

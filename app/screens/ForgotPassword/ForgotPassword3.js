@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   ToastAndroid,
+  StatusBar,
 } from "react-native";
 import React from "react";
 
@@ -18,11 +19,17 @@ import {
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { forgotpass3 } = images;
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 
 const PASS_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?^-_ ])[A-Za-z\d#$@!%&*?^-_ ]{8,30}$/;
+
+function FocusAwareStatusBar(props) {
+  const isFocused = useIsFocused();
+
+  return isFocused ? <StatusBar {...props} /> : null;
+}
 
 const ForgotPassword3 = () => {
   const navigation = useNavigation();
@@ -40,6 +47,11 @@ const ForgotPassword3 = () => {
 
   return (
     <>
+      <FocusAwareStatusBar
+        barStyle="dark-content"
+        backgroundColor={COLORS.white}
+      />
+
       <Header />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
@@ -48,9 +60,9 @@ const ForgotPassword3 = () => {
             style={styles.image}
             resizeMode="contain"
           />
-          <Text style={styles.title}>Reset Password</Text>
+          <Text style={[styles.title, { ...FONTS.h1 }]}>Reset Password</Text>
 
-          <Text style={styles.text}>
+          <Text style={[styles.text, { ...FONTS.body3a }]}>
             The new password must be 8-30 characters long and should include a
             combination of uppercase and lowercase letters, numbers, and special
             characters.
@@ -114,14 +126,11 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
     color: "#051C60",
     marginBottom: 10,
   },
   text: {
     textAlign: "center",
-    fontSize: 15,
     color: "gray",
     marginBottom: 50,
   },

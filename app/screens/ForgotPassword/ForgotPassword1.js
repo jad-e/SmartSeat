@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  StatusBar,
+} from "react-native";
 import React from "react";
 
 import { CustomButton1, CustomInput, Header } from "../../components";
@@ -6,8 +13,14 @@ import { CustomButton1, CustomInput, Header } from "../../components";
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { forgotpass1 } = images;
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
+
+function FocusAwareStatusBar(props) {
+  const isFocused = useIsFocused();
+
+  return isFocused ? <StatusBar {...props} /> : null;
+}
 
 const ForgotPassword1 = () => {
   const navigation = useNavigation();
@@ -20,6 +33,11 @@ const ForgotPassword1 = () => {
 
   return (
     <>
+      <FocusAwareStatusBar
+        barStyle="dark-content"
+        backgroundColor={COLORS.white}
+      />
+
       <Header />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
@@ -28,9 +46,9 @@ const ForgotPassword1 = () => {
             style={styles.image}
             resizeMode="contain"
           />
-          <Text style={styles.title}>Forgot Password</Text>
+          <Text style={[styles.title, { ...FONTS.h1 }]}>Forgot Password</Text>
 
-          <Text style={styles.text}>
+          <Text style={[styles.text, { ...FONTS.body3a }]}>
             Enter your account's username for which you want to reset your
             password.
           </Text>
@@ -74,14 +92,11 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
     color: "#051C60",
     marginBottom: 10,
   },
   text: {
     textAlign: "center",
-    fontSize: 15,
     color: "gray",
     marginBottom: 50,
   },

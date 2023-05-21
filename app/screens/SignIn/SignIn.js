@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, ScrollView } from "react-native";
+import { View, Image, StyleSheet, ScrollView, StatusBar } from "react-native";
 
 import {
   CustomInput,
@@ -8,12 +8,18 @@ import {
 } from "../../components";
 
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 
 // Constants
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { applogo1, applogo2 } = images;
+
+function FocusAwareStatusBar(props) {
+  const isFocused = useIsFocused();
+
+  return isFocused ? <StatusBar {...props} /> : null;
+}
 
 const SignIn = () => {
   const navigation = useNavigation();
@@ -35,45 +41,52 @@ const SignIn = () => {
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
-        <Image source={applogo2} style={styles.logo} resizeMode="contain" />
+    <>
+      <FocusAwareStatusBar
+        barStyle="dark-content"
+        backgroundColor={COLORS.white}
+      />
 
-        <CustomInput
-          name="username"
-          placeholder="Username"
-          secureTextEntry={false}
-          control={control}
-          rules={{ required: "Username is required." }}
-          marginTop={0}
-          marginBottom={0}
-        />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.container}>
+          <Image source={applogo2} style={styles.logo} resizeMode="contain" />
 
-        <CustomInput
-          name="password"
-          control={control}
-          placeholder="Password"
-          secureTextEntry={true}
-          rules={{ required: "Password is required." }}
-          marginTop={20}
-          marginBottom={0}
-        />
+          <CustomInput
+            name="username"
+            placeholder="Username"
+            secureTextEntry={false}
+            control={control}
+            rules={{ required: "Username is required." }}
+            marginTop={0}
+            marginBottom={0}
+          />
 
-        <CustomButton1
-          text="Sign In"
-          onPress={handleSubmit(onSignInPressed)}
-          marginTop={35}
-          marginBottom={20}
-        />
+          <CustomInput
+            name="password"
+            control={control}
+            placeholder="Password"
+            secureTextEntry={true}
+            rules={{ required: "Password is required." }}
+            marginTop={20}
+            marginBottom={0}
+          />
 
-        <CustomButton3
-          text="Forgot password?"
-          onPress={onForgotPasswordPressed}
-          marginTop={0}
-          marginBottom={0}
-        />
-      </View>
-    </ScrollView>
+          <CustomButton1
+            text="Sign In"
+            onPress={handleSubmit(onSignInPressed)}
+            marginTop={35}
+            marginBottom={20}
+          />
+
+          <CustomButton3
+            text="Forgot password?"
+            onPress={onForgotPasswordPressed}
+            marginTop={0}
+            marginBottom={0}
+          />
+        </View>
+      </ScrollView>
+    </>
   );
 };
 

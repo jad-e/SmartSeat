@@ -1,16 +1,42 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 
-const CustomButton1 = ({ onPress, text, marginTop, marginBottom }) => {
+const CustomButton1 = ({
+  onPress,
+  text,
+  marginTop,
+  marginBottom,
+  borderRadius = 25,
+  backgroundColor = "#FFDE59",
+  fontSize = 15,
+  fontFamily = "Roboto-Bold",
+  lineHeight = 22,
+}) => {
   return (
     <Pressable
       onPress={onPress}
       style={[
         styles.container,
-        { marginTop: marginTop, marginBottom: marginBottom },
+        {
+          marginTop: marginTop,
+          marginBottom: marginBottom,
+          borderRadius: borderRadius,
+          backgroundColor: backgroundColor,
+        },
       ]}
     >
-      <Text style={styles.text}>{text}</Text>
+      <Text
+        style={[
+          styles.text,
+          {
+            fontSize: fontSize,
+            fontFamily: fontFamily,
+            lineHeight: lineHeight,
+          },
+        ]}
+      >
+        {text}
+      </Text>
     </Pressable>
   );
 };
@@ -25,9 +51,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFDE59",
   },
   text: {
-    fontWeight: "bold",
     color: "black",
-    fontSize: 15,
   },
 });
 

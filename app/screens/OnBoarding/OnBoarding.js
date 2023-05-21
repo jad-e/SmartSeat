@@ -6,9 +6,10 @@ import {
   Animated,
   Image,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 // Constants
 import { images, theme } from "../../constants";
@@ -37,6 +38,12 @@ const onBoardings = [
     img: onboarding3,
   },
 ];
+
+function FocusAwareStatusBar(props) {
+  const isFocused = useIsFocused();
+
+  return isFocused ? <StatusBar {...props} /> : null;
+}
 
 const OnBoarding = () => {
   const navigation = useNavigation();
@@ -114,7 +121,7 @@ const OnBoarding = () => {
               <Text
                 style={{
                   ...FONTS.h1,
-                  color: COLORS.gray,
+                  color: "#808080",
                   textAlign: "center",
                 }}
               >
@@ -192,10 +199,16 @@ const OnBoarding = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View>{renderContent()}</View>
-      <View style={styles.dotsRootContainer}>{renderDots()}</View>
-    </SafeAreaView>
+    <>
+      <FocusAwareStatusBar
+        barStyle="dark-content"
+        backgroundColor={COLORS.white}
+      />
+      <SafeAreaView style={styles.container}>
+        <View>{renderContent()}</View>
+        <View style={styles.dotsRootContainer}>{renderDots()}</View>
+      </SafeAreaView>
+    </>
   );
 };
 

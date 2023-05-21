@@ -12,6 +12,9 @@ export const forgotpass4 = require("../assets/images/forgotpass-4.png");
 
 export const appname = require("../assets/images/appname.png");
 
+export const profilepic = require("../assets/images/profile_pic.png");
+export const profilepictest = require("../assets/images/profile_pic_test.jpg");
+
 export default {
   onboarding1,
   onboarding2,
@@ -23,4 +26,6 @@ export default {
   forgotpass3,
   forgotpass4,
   appname,
+  profilepic,
+  profilepictest,
 };

@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   ToastAndroid,
+  StatusBar,
 } from "react-native";
 import React from "react";
 
@@ -13,7 +14,13 @@ import { CustomButton1, Header } from "../../components";
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { forgotpass4 } = images;
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+
+function FocusAwareStatusBar(props) {
+  const isFocused = useIsFocused();
+
+  return isFocused ? <StatusBar {...props} /> : null;
+}
 
 const ForgotPassword4 = () => {
   const navigation = useNavigation();
@@ -25,6 +32,10 @@ const ForgotPassword4 = () => {
 
   return (
     <>
+      <FocusAwareStatusBar
+        barStyle="dark-content"
+        backgroundColor={COLORS.white}
+      />
       <View style={{ height: 55, backgroundColor: COLORS.white }} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
@@ -33,9 +44,9 @@ const ForgotPassword4 = () => {
             style={styles.image}
             resizeMode="contain"
           />
-          <Text style={styles.title}>Password Changed</Text>
+          <Text style={[styles.title, { ...FONTS.h1 }]}>Password Changed</Text>
 
-          <Text style={styles.text}>
+          <Text style={[styles.text, { ...FONTS.body3a }]}>
             Your password has been reset succesfully. Please sign in with the
             new password.
           </Text>
@@ -69,14 +80,11 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
     color: "#051C60",
     marginBottom: 10,
   },
   text: {
     textAlign: "center",
-    fontSize: 15,
     color: "gray",
     marginBottom: 50,
   },
