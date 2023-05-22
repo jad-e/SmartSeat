@@ -7,14 +7,38 @@ import {
   StyleSheet,
   ScrollView,
   StatusBar,
+  rgba,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+
+import { useForm } from "react-hook-form";
+
+import {
+  CustomInput,
+  CustomButton1,
+  CustomButton2,
+  CustomButton3,
+} from "../../components";
+
+import {
+  Modal,
+  BottomModal,
+  ModalContent,
+  ModalFooter,
+  ModalButton,
+  ModalTitle,
+  Animation,
+  FadeAnimation,
+  ScaleAnimation,
+  SlideAnimation,
+} from "react-native-modals";
 
 import DropShadow from "react-native-drop-shadow";
 
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
+import { TextInput } from "react-native-gesture-handler";
 const { appname } = images;
 
 function FocusAwareStatusBar(props) {
@@ -24,8 +48,6 @@ function FocusAwareStatusBar(props) {
 }
 
 const Home = () => {
-  const navigation = useNavigation();
-
   // Acceptable Behaviours
   // 1: Can talk, 10: cannot talk
   // 2: food allowed, 20: food not allowed
@@ -107,6 +129,64 @@ const Home = () => {
     },
   ];
 
+  const navigation = useNavigation();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  // on press functions
+  const onMoreFeaturePressed = () => {
+    console.log("more feature pressed");
+
+    setBottomSheetState(true);
+  };
+
+  const onAssistMeFeaturePressed = () => {
+    console.log("assist me feature pressed");
+
+    setPopUpDialogState(true);
+  };
+
+  const onTimelineFeaturePressed = () => {
+    console.log("timeline feature pressed");
+
+    navigation.navigate("Timeline");
+  };
+
+  const onFAQFeaturePressed = () => {
+    console.log("FAQ feature pressed");
+  };
+
+  const AssistMeBTSPressed = () => {
+    console.log("Assist Me BTS pressed");
+
+    setBottomSheetState(false);
+
+    setPopUpDialogState(true);
+  };
+
+  const TimelineBTSPressed = () => {
+    console.log("Timeline BTS pressed");
+
+    setBottomSheetState(false);
+
+    navigation.navigate("Timeline");
+  };
+
+  const FAQBTSPressed = () => {
+    console.log("FAQ BTS pressed");
+  };
+
+  const onDialogOKPressed = (data) => {
+    setPopUpDialogState(false);
+  };
+
+  //states
+  const [bottomSheetState, setBottomSheetState] = React.useState(false); //track the state of the bottomsheet
+  const [popUpDialogState, setPopUpDialogState] = React.useState(false); //track the state of the pop up dialog
   const [studySpaces, setStudySpaces] = React.useState(studySpacesData);
 
   function renderHeader() {
@@ -162,7 +242,7 @@ const Home = () => {
                 alignItems: "center",
                 flexDirection: "column",
               }}
-              onPress={() => console.log("assist me")}
+              onPress={onAssistMeFeaturePressed}
             >
               <Image
                 source={icons.hand}
@@ -186,14 +266,14 @@ const Home = () => {
               </Text>
             </TouchableOpacity>
 
-            {/* Reservation History */}
+            {/* Timeline */}
             <TouchableOpacity
               style={{
                 width: 60,
                 alignItems: "center",
                 flexDirection: "column",
               }}
-              onPress={() => console.log("history")}
+              onPress={onTimelineFeaturePressed}
             >
               <Image
                 source={icons.history}
@@ -213,7 +293,7 @@ const Home = () => {
                   ...FONTS.body4a,
                 }}
               >
-                History
+                Timeline
               </Text>
             </TouchableOpacity>
 
@@ -224,7 +304,7 @@ const Home = () => {
                 alignItems: "center",
                 flexDirection: "column",
               }}
-              onPress={() => console.log("faqs")}
+              onPress={onFAQFeaturePressed}
             >
               <Image
                 source={icons.question_sign}
@@ -255,7 +335,7 @@ const Home = () => {
                 alignItems: "center",
                 flexDirection: "column",
               }}
-              onPress={() => console.log("more")}
+              onPress={onMoreFeaturePressed}
             >
               <Image
                 source={icons.application}
@@ -545,7 +625,180 @@ const Home = () => {
     );
   }
 
-  return <View style={styles.container}>{renderHome()}</View>;
+  return (
+    <View style={[styles.container]}>
+      {renderHome()}
+
+      {/* more bottom sheet */}
+      <BottomModal
+        visible={bottomSheetState}
+        onTouchOutside={() => {
+          setBottomSheetState(false);
+        }}
+        onSwipeOut={() => {
+          setBottomSheetState(false);
+        }}
+      >
+        <ModalContent>
+          <View
+            style={{
+              height: 30,
+              marginHorizontal: 10,
+              marginBottom: 10,
+            }}
+          >
+            <Text style={{ ...FONTS.h2a }}>Features</Text>
+          </View>
+
+          {/* assist me bottom sheet option */}
+          <TouchableOpacity onPress={AssistMeBTSPressed}>
+            <View
+              style={{
+                flexDirection: "row",
+                marginHorizontal: 10,
+                height: 60,
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.hand}
+                style={{ tintColor: COLORS.primary, height: 35, width: 35 }}
+              />
+              <View style={{ marginLeft: 20 }}>
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  Assist Me
+                </Text>
+                <Text style={{ ...FONTS.body4a, color: COLORS.gray }}>
+                  Request assistance from the librarian
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          {/* timeline bottom sheet option */}
+          <TouchableOpacity onPress={TimelineBTSPressed}>
+            <View
+              style={{
+                flexDirection: "row",
+                marginHorizontal: 10,
+                height: 60,
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.history}
+                style={{ tintColor: COLORS.primary, height: 35, width: 35 }}
+              />
+              <View style={{ marginLeft: 20 }}>
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  Timeline
+                </Text>
+                <Text style={{ ...FONTS.body4a, color: COLORS.gray }}>
+                  View your seat reservation history in detail
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          {/* FAQs bottom sheet option */}
+          <TouchableOpacity onPress={FAQBTSPressed}>
+            <View
+              style={{
+                flexDirection: "row",
+                marginHorizontal: 10,
+                height: 60,
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.question_sign}
+                style={{ tintColor: COLORS.primary, height: 35, width: 35 }}
+              />
+              <View style={{ marginLeft: 20 }}>
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  FAQs
+                </Text>
+                <Text style={{ ...FONTS.body4a, color: COLORS.gray }}>
+                  Find answers to all your questions
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </ModalContent>
+      </BottomModal>
+
+      {/* assist me pop up dialog */}
+      <Modal
+        visible={popUpDialogState}
+        modalAnimation={
+          new ScaleAnimation({
+            initialValue: 0, // optional
+            useNativeDriver: true, // optional
+          })
+        }
+        width={0.85}
+        height={0.38}
+      >
+        <ModalContent>
+          <View
+            style={{
+              flexDirection: "column",
+              alignItems: "center",
+              height: "100%",
+            }}
+          >
+            <Text style={{ ...FONTS.h2b }}>Enter your seat number</Text>
+            <Text
+              style={{
+                textAlign: "center",
+                ...FONTS.body4,
+                color: COLORS.gray,
+                marginBottom: 20,
+              }}
+            >
+              The librarian will arrive shortly to assist you.
+            </Text>
+            <CustomInput
+              name="seat-number"
+              placeholder="Seat Number"
+              secureTextEntry={false}
+              control={control}
+              rules={{ required: "Seat number is required." }}
+              marginTop={0}
+              keyboardType="keypad"
+              marginBottom={0}
+            />
+            <View style={{ marginTop: "auto" }}>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                }}
+              >
+                <CustomButton1
+                  text="Cancel"
+                  onPress={() => setPopUpDialogState(false)}
+                  marginTop={20}
+                  marginBottom={0}
+                  borderRadius={5}
+                  width="40%"
+                />
+                <CustomButton1
+                  text="OK"
+                  onPress={handleSubmit(onDialogOKPressed)}
+                  marginTop={20}
+                  marginBottom={0}
+                  borderRadius={5}
+                  width="40%"
+                />
+              </View>
+            </View>
+          </View>
+        </ModalContent>
+      </Modal>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

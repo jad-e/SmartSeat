@@ -12,6 +12,9 @@ import NoReservation from "./NoReservation/NoReservation";
 import PendingReservation from "./PendingReservation/PendingReservation";
 import ConfirmedReservation from "./ConfirmedReservation/ConfirmedReservation";
 
+import RevDoneTimelineComp from "./RevDoneTimelineComp/RevDoneTimelineComp";
+import RevViolateTimelineComp from "./RevViolateTimelineComp/RevViolateTimelineComp";
+
 export {
   CustomButton1,
   CustomButton2,
@@ -21,4 +24,6 @@ export {
   NoReservation,
   PendingReservation,
   ConfirmedReservation,
+  RevDoneTimelineComp,
+  RevViolateTimelineComp,
 };
