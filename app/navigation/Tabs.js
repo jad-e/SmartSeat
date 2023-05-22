@@ -55,6 +55,7 @@ const Tabs = () => {
           ),
         }}
       />
+
       <Tab.Screen
         name="Reservation"
         component={Reservation}

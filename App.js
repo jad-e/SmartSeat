@@ -1,9 +1,13 @@
+import "react-native-gesture-handler";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import React, { useEffect } from "react";
 
 import SplashScreen from "react-native-splash-screen";
+
+import { ModalPortal } from "react-native-modals";
 
 //Screens
 import {
@@ -14,6 +18,7 @@ import {
   ForgotPassword3,
   ForgotPassword4,
   SeatMap,
+  Timeline,
   ProfileDetail,
 } from "./app/screens";
 
@@ -27,67 +32,76 @@ export default function App() {
   }, []);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName={"OnBoarding"}
-      >
-        <Stack.Screen
-          name="OnBoarding"
-          component={OnBoarding}
-          options={{ headerShown: false }}
-        />
+    <>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName={"OnBoarding"}
+        >
+          <Stack.Screen
+            name="OnBoarding"
+            component={OnBoarding}
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen
-          name="SignIn"
-          component={SignIn}
-          options={{ headerShown: false }}
-        />
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen
-          name="ForgotPassword1"
-          component={ForgotPassword1}
-          options={{ headerShown: false }}
-        />
+          <Stack.Screen
+            name="ForgotPassword1"
+            component={ForgotPassword1}
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen
-          name="ForgotPassword2"
-          component={ForgotPassword2}
-          options={{ headerShown: false }}
-        />
+          <Stack.Screen
+            name="ForgotPassword2"
+            component={ForgotPassword2}
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen
-          name="ForgotPassword3"
-          component={ForgotPassword3}
-          options={{ headerShown: false }}
-        />
+          <Stack.Screen
+            name="ForgotPassword3"
+            component={ForgotPassword3}
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen
-          name="ForgotPassword4"
-          component={ForgotPassword4}
-          options={{ headerShown: false }}
-        />
+          <Stack.Screen
+            name="ForgotPassword4"
+            component={ForgotPassword4}
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen
-          name="Home"
-          component={Tabs}
-          options={{ headerShown: false }}
-        />
+          <Stack.Screen
+            name="Home"
+            component={Tabs}
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen
-          name="SeatMap"
-          component={SeatMap}
-          options={{ headerShown: false }}
-        />
+          <Stack.Screen
+            name="SeatMap"
+            component={SeatMap}
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen
-          name="ProfileDetail"
-          component={ProfileDetail}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="Timeline"
+            component={Timeline}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name="ProfileDetail"
+            component={ProfileDetail}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <ModalPortal />
+    </>
   );
 }

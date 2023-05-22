@@ -10,6 +10,8 @@ import ForgotPassword4 from "./ForgotPassword/ForgotPassword4";
 
 import Home from "./Home/Home";
 
+import Timeline from "./Timeline/Timeline";
+
 import Reservation from "./Reservation/Reservation";
 
 import Notifications from "./Notifications/Notifications";
@@ -27,6 +29,7 @@ export {
   ForgotPassword3,
   ForgotPassword4,
   Home,
+  Timeline,
   Reservation,
   Notifications,
   Profile,
