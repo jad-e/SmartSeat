@@ -20,6 +20,7 @@ import {
   SeatMap,
   Timeline,
   ProfileDetail,
+  FAQ,
 } from "./app/screens";
 
 import { Tabs } from "./app/navigation";
@@ -97,6 +98,12 @@ export default function App() {
           <Stack.Screen
             name="ProfileDetail"
             component={ProfileDetail}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name="FAQ"
+            component={FAQ}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

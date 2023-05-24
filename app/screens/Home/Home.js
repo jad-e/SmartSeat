@@ -157,7 +157,7 @@ const Home = () => {
   };
 
   const onFAQFeaturePressed = () => {
-    console.log("FAQ feature pressed");
+    navigation.navigate("FAQ");
   };
 
   const AssistMeBTSPressed = () => {
@@ -178,6 +178,10 @@ const Home = () => {
 
   const FAQBTSPressed = () => {
     console.log("FAQ BTS pressed");
+
+    setBottomSheetState(false);
+
+    navigation.navigate("FAQ");
   };
 
   const onDialogOKPressed = (data) => {
@@ -194,7 +198,7 @@ const Home = () => {
       <>
         <FocusAwareStatusBar
           barStyle="light-content"
-          backgroundColor={COLORS.primary}
+          backgroundColor={COLORS.Gheader}
         />
 
         <View
@@ -202,7 +206,7 @@ const Home = () => {
             flexDirection: "row",
             justifyContent: "center",
             marginBottom: 20,
-            backgroundColor: COLORS.primary,
+            backgroundColor: COLORS.Gheader,
             height: 100,
             width: "100%",
           }}
@@ -250,7 +254,7 @@ const Home = () => {
                 style={{
                   height: 30,
                   width: 30,
-                  tintColor: COLORS.primary,
+                  tintColor: COLORS.appmain,
                 }}
               />
 
@@ -281,7 +285,7 @@ const Home = () => {
                 style={{
                   height: 30,
                   width: 30,
-                  tintColor: COLORS.primary,
+                  tintColor: COLORS.appmain,
                 }}
               />
 
@@ -312,7 +316,7 @@ const Home = () => {
                 style={{
                   height: 30,
                   width: 30,
-                  tintColor: COLORS.primary,
+                  tintColor: COLORS.appmain,
                 }}
               />
 
@@ -343,7 +347,7 @@ const Home = () => {
                 style={{
                   height: 30,
                   width: 30,
-                  tintColor: COLORS.primary,
+                  tintColor: COLORS.appmain,
                 }}
               />
 
@@ -662,7 +666,7 @@ const Home = () => {
             >
               <Image
                 source={icons.hand}
-                style={{ tintColor: COLORS.primary, height: 35, width: 35 }}
+                style={{ tintColor: COLORS.appmain, height: 35, width: 35 }}
               />
               <View style={{ marginLeft: 20 }}>
                 <Text style={{ ...FONTS.body4, color: COLORS.black }}>
@@ -687,7 +691,7 @@ const Home = () => {
             >
               <Image
                 source={icons.history}
-                style={{ tintColor: COLORS.primary, height: 35, width: 35 }}
+                style={{ tintColor: COLORS.appmain, height: 35, width: 35 }}
               />
               <View style={{ marginLeft: 20 }}>
                 <Text style={{ ...FONTS.body4, color: COLORS.black }}>
@@ -712,7 +716,7 @@ const Home = () => {
             >
               <Image
                 source={icons.question_sign}
-                style={{ tintColor: COLORS.primary, height: 35, width: 35 }}
+                style={{ tintColor: COLORS.appmain, height: 35, width: 35 }}
               />
               <View style={{ marginLeft: 20 }}>
                 <Text style={{ ...FONTS.body4, color: COLORS.black }}>

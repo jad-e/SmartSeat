@@ -21,6 +21,8 @@ import ProfileDetail from "./Profile/ProfileDetail";
 
 import SeatMap from "./SeatMap/SeatMap";
 
+import FAQ from "./FAQ/FAQ";
+
 export {
   OnBoarding,
   SignIn,
@@ -35,4 +37,5 @@ export {
   Profile,
   ProfileDetail,
   SeatMap,
+  FAQ,
 };
