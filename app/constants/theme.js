@@ -2,8 +2,60 @@ import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 export const COLORS = {
-  primary: "#FFDE59", // logo color yellow
-  secondary: "#ffffdc", // lighter yellow
+  //MAIN THEME 1 - FOREST APP
+  Fprimary: "",
+  Fsecondary: "",
+
+  //MAIN THEME 2 -  GRAB APP
+
+  appmain: "#35C073", //app icon, logo, onboarding, etc....
+
+  Gsplashlight: "#DCFDDF",
+  Gsplashmain: "#1BC061",
+  Gsplashheartlight: "#0EB250",
+  Gsplashheartdark: "#0A804A",
+
+  Gheader: "#35C073",
+
+  Gfeaturebackground: "#CBEEDB",
+
+  Gtabs: "#35C073",
+
+  Gnotitabselected: "#005239",
+  Gnotitabunselected: "#EEF8FA",
+  giconorangefore: "#F4670B",
+  Giconorangeback: "#FFF4EA",
+  gicongreenfore: "#02B14F",
+  Gicongreenback: "#DAFBDD",
+
+  Gbuttonbackground1_positiveback: "#35C073", //type 1 (full btn)
+  Gbuttonbackground1_positivefore: "#FFFFFF", //type 1 (full btn)
+  Gbuttonbackground1_negativeback: "#EEF8FA", //type 1 (full btn)
+  Gbuttonbackground1_negativefore: "#00533B", //type 1 (full btn)
+
+  Gbuttonbackground2: "", //type 2
+  Gbuttonbackground3_green: "#0ECF72", //type 3 (link btn)
+  Gbuttonbackground3_blue: "#0870DF", //type 3 (link btn)
+
+  Glightbluebackground: "#EBF9FF",
+  Gblue: "#0D70D5",
+  Gdarkerblue: "#3464C3",
+
+  Gnewtagred: "#ED6252",
+
+  // GENERAL COLORS
+  gray: "#a6a6a6",
+  lightgray1: "#FAFAFA",
+  lightgray2: "#F5F5F5",
+  lightgray3: "#ECECEC",
+  lightgray4: "#DEDEDE",
+  lightgray5: "#D4D4D4",
+  darkgray: "#5f5f5f",
+
+  orange: "#FFA500",
+
+  purple: "#6B3CE9",
+  lightpurple: "#F3EFFF",
 
   black: "#1E1F20",
   white: "#FFFFFF",
@@ -16,21 +68,6 @@ export const COLORS = {
 
   red: "#FF4134",
   lightRed: "#FFF1F0",
-
-  orange: "#FFA500",
-
-  purple: "#6B3CE9",
-  lightpurple: "#F3EFFF",
-
-  gray: "#a6a6a6",
-  lightgray1: "#FAFAFA",
-  lightgray2: "#F5F5F5",
-  lightgray3: "#ECECEC",
-  lightgray4: "#DEDEDE",
-  lightgray5: "#D4D4D4",
-  darkgray: "#5f5f5f",
-
-  blue: "#0682FE",
 
   transparent: "transparent",
 };

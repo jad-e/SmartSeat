@@ -154,11 +154,16 @@ const OnBoarding = () => {
                 borderBottomLeftRadius: 30,
                 borderBottomRightRadius: 0,
                 borderTopRightRadius: 0,
-                backgroundColor: "#FFDE59",
+                backgroundColor: COLORS.Gbuttonbackground1_positiveback,
               }}
               onPress={onSkipGoPressed}
             >
-              <Text style={{ ...FONTS.h2, color: COLORS.black }}>
+              <Text
+                style={{
+                  ...FONTS.h2,
+                  color: COLORS.Gbuttonbackground1_positivefore,
+                }}
+              >
                 {completed ? "Let's Go" : "Skip"}
               </Text>
             </TouchableOpacity>
@@ -236,7 +241,7 @@ const styles = StyleSheet.create({
   },
   dot: {
     borderRadius: SIZES.radius,
-    backgroundColor: "#FFDE59",
+    backgroundColor: "#35C073",
     marginHorizontal: SIZES.radius / 2,
   },
 });

@@ -1,17 +1,21 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 
+import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+
 const CustomButton1 = ({
   onPress,
   text,
   marginTop,
   marginBottom,
   borderRadius = 25,
-  backgroundColor = "#FFDE59",
+  backgroundColor = COLORS.Gbuttonbackground1_positiveback,
   fontSize = 15,
   fontFamily = "Roboto-Bold",
   lineHeight = 22,
   width = "100%",
+  color = COLORS.Gbuttonbackground1_positivefore,
 }) => {
   return (
     <Pressable
@@ -29,11 +33,11 @@ const CustomButton1 = ({
     >
       <Text
         style={[
-          styles.text,
           {
             fontSize: fontSize,
             fontFamily: fontFamily,
             lineHeight: lineHeight,
+            color: color,
           },
         ]}
       >
@@ -49,10 +53,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     alignItems: "center",
     borderRadius: 25,
-    backgroundColor: "#FFDE59",
-  },
-  text: {
-    color: "black",
+    backgroundColor: COLORS.Gbuttonbackground1_positiveback,
   },
 });
 

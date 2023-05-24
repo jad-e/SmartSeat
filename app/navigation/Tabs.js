@@ -40,12 +40,12 @@ const Tabs = () => {
                 style={{
                   width: 20,
                   height: 20,
-                  tintColor: focused ? COLORS.primary : COLORS.black,
+                  tintColor: focused ? COLORS.Gtabs : COLORS.black,
                 }}
               />
               <Text
                 style={{
-                  color: focused ? COLORS.primary : COLORS.black,
+                  color: focused ? COLORS.Gtabs : COLORS.black,
                   ...FONTS.body5,
                 }}
               >
@@ -68,12 +68,12 @@ const Tabs = () => {
                 style={{
                   width: 20,
                   height: 20,
-                  tintColor: focused ? COLORS.primary : COLORS.black,
+                  tintColor: focused ? COLORS.Gtabs : COLORS.black,
                 }}
               />
               <Text
                 style={{
-                  color: focused ? COLORS.primary : COLORS.black,
+                  color: focused ? COLORS.Gtabs : COLORS.black,
                   ...FONTS.body5,
                 }}
               >
@@ -95,12 +95,12 @@ const Tabs = () => {
                 style={{
                   width: 20,
                   height: 20,
-                  tintColor: focused ? COLORS.primary : COLORS.black,
+                  tintColor: focused ? COLORS.Gtabs : COLORS.black,
                 }}
               />
               <Text
                 style={{
-                  color: focused ? COLORS.primary : COLORS.black,
+                  color: focused ? COLORS.Gtabs : COLORS.black,
                   ...FONTS.body5,
                 }}
               >
@@ -122,12 +122,12 @@ const Tabs = () => {
                 style={{
                   width: 20,
                   height: 20,
-                  tintColor: focused ? COLORS.primary : COLORS.black,
+                  tintColor: focused ? COLORS.Gtabs : COLORS.black,
                 }}
               />
               <Text
                 style={{
-                  color: focused ? COLORS.primary : COLORS.black,
+                  color: focused ? COLORS.Gtabs : COLORS.black,
                   ...FONTS.body5,
                 }}
               >

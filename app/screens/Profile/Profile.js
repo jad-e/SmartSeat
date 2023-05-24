@@ -279,7 +279,7 @@ const Profile = () => {
                   paddingLeft: 20,
                   justifyContent: "space-between",
                 }}
-                onPress={() => console.log("FAQs and Support")}
+                onPress={() => navigation.navigate("FAQ")}
               >
                 <Text style={{ ...FONTS.body4 }}>FAQs and Support</Text>
                 <Image
@@ -386,6 +386,7 @@ const Profile = () => {
               fontSize={14}
               fontFamily="Roboto-Regular"
               lineHeight={22}
+              color={COLORS.black}
             />
           </DropShadow>
         </View>
