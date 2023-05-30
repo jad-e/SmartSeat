@@ -6,11 +6,11 @@ import { useNavigation } from "@react-navigation/native";
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { back_arrow } = icons;
 
-const Header = ({ title = "" }) => {
+const Header = ({ title = "", backgroundColor = COLORS.white }) => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, { backgroundColor: backgroundColor }]}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Image source={back_arrow} style={styles.header_arrow} />
       </TouchableOpacity>
@@ -22,7 +22,6 @@ const Header = ({ title = "" }) => {
 const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
-    backgroundColor: COLORS.white,
     height: 55,
     width: SIZES.width,
     alignItems: "center",

@@ -23,7 +23,7 @@ export const COLORS = {
 
   Gnotitabselected: "#005239",
   Gnotitabunselected: "#EEF8FA",
-  giconorangefore: "#F4670B",
+  Giconorangefore: "#F4670B",
   Giconorangeback: "#FFF4EA",
   gicongreenfore: "#02B14F",
   Gicongreenback: "#DAFBDD",

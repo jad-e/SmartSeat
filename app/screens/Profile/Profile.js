@@ -307,7 +307,7 @@ const Profile = () => {
                   paddingLeft: 20,
                   justifyContent: "space-between",
                 }}
-                onPress={() => console.log("Submit a Suggestion")}
+                onPress={() => navigation.navigate("FeedbackSubmission")}
               >
                 <Text style={{ ...FONTS.body4 }}>Submit a Suggestion</Text>
                 <Image
