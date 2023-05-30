@@ -19,6 +19,19 @@ export const park = require("../assets/images/park.png");
 export const bench = require("../assets/images/bench.png");
 export const windy = require("../assets/images/windy.png");
 
+export const add = require("../assets/images/add.png");
+
+export const faq9_1 = require("../assets/images/faq9-1.png");
+export const faq9_2 = require("../assets/images/faq9-2.png");
+export const faq9_3 = require("../assets/images/faq9-3.png");
+
+export const faq6_1 = require("../assets/images/faq6_1.png");
+
+export const faq5_1 = require("../assets/images/faq5_1.png");
+export const faq5_2 = require("../assets/images/faq5_2.png");
+
+export const faq1_1 = require("../assets/images/faq1_1.png");
+
 export default {
   onboarding1,
   onboarding2,
@@ -35,4 +48,12 @@ export default {
   park,
   bench,
   windy,
+  add,
+  faq9_1,
+  faq9_2,
+  faq9_3,
+  faq6_1,
+  faq5_1,
+  faq5_2,
+  faq1_1,
 };

@@ -38,7 +38,6 @@ import DropShadow from "react-native-drop-shadow";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
-import { TextInput } from "react-native-gesture-handler";
 const { appname } = images;
 
 function FocusAwareStatusBar(props) {
@@ -769,7 +768,6 @@ const Home = () => {
               control={control}
               rules={{ required: "Seat number is required." }}
               marginTop={0}
-              keyboardType="keypad"
               marginBottom={0}
             />
             <View style={{ marginTop: "auto" }}>

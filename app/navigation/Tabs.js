@@ -27,6 +27,7 @@ const Tabs = () => {
         },
         headerShown: false,
       }}
+      sceneContainerStyle={{ backgroundColor: COLORS.white }}
     >
       <Tab.Screen
         name="Home"
