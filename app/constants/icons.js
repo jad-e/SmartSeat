@@ -20,6 +20,23 @@ const scan = require("../assets/icons/scan.png");
 const writing = require("../assets/icons/writing.png");
 const plus = require("../assets/icons/plus.png");
 const camera = require("../assets/icons/camera.png");
+const time = require("../assets/icons/time.png");
+const mortarboard = require("../assets/icons/mortarboard.png");
+const redchair1 = require("../assets/icons/redchair1.png");
+const redchair2 = require("../assets/icons/redchair2.png");
+const armchair = require("../assets/icons/armchair.png");
+
+const placeholder1 = require("../assets/icons/placeholder1.png");
+const placeholder2 = require("../assets/icons/placeholder2.png");
+const placeholder3 = require("../assets/icons/placeholder3.png");
+const placeholder4 = require("../assets/icons/placeholder4.png");
+
+const pin1 = require("../assets/icons/pin1.png");
+const pin2 = require("../assets/icons/pin2.png");
+const pin3 = require("../assets/icons/pin3.png");
+
+const card1 = require("../assets/icons/card1.png");
+const card2 = require("../assets/icons/card2.png");
 
 export default {
   back_arrow,
@@ -44,4 +61,18 @@ export default {
   writing,
   plus,
   camera,
+  time,
+  mortarboard,
+  redchair1,
+  redchair2,
+  armchair,
+  placeholder1,
+  placeholder2,
+  placeholder3,
+  placeholder4,
+  pin1,
+  pin2,
+  pin3,
+  card1,
+  card2,
 };

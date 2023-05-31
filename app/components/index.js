@@ -14,6 +14,7 @@ import ConfirmedReservation from "./ConfirmedReservation/ConfirmedReservation";
 
 import RevDoneTimelineComp from "./RevDoneTimelineComp/RevDoneTimelineComp";
 import RevViolateTimelineComp from "./RevViolateTimelineComp/RevViolateTimelineComp";
+import BarTimelineComp from "./BarTimelineComp/BarTimelineComp";
 
 export {
   CustomButton1,
@@ -26,4 +27,5 @@ export {
   ConfirmedReservation,
   RevDoneTimelineComp,
   RevViolateTimelineComp,
+  BarTimelineComp,
 };
