@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
   StatusBar,
+  Linking,
 } from "react-native";
 import React from "react";
 
@@ -31,6 +32,9 @@ function FocusAwareStatusBar(props) {
 }
 
 const Profile = () => {
+  //states
+  const [profileImgPath, setProfileImgPath] = React.useState(null);
+
   const navigation = useNavigation();
 
   const onSignOutPressed = (data) => {
@@ -103,7 +107,9 @@ const Profile = () => {
                     }}
                   >
                     <Image
-                      source={profilepictest}
+                      source={
+                        profileImgPath ? { uri: profileImgPath } : profilepic
+                      }
                       style={{
                         height: 55,
                         width: 55,
@@ -215,6 +221,7 @@ const Profile = () => {
             >
               {/* language */}
               <TouchableOpacity
+                activeOpacity={1}
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -226,10 +233,27 @@ const Profile = () => {
                 onPress={() => console.log("Change language")}
               >
                 <Text style={{ ...FONTS.body4 }}>Change Language</Text>
-                <Image
-                  source={icons.right_arrow}
-                  style={{ width: 10, height: 10, tintColor: COLORS.gray }}
-                />
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  {/* coming soon tag */}
+                  <View
+                    style={{
+                      backgroundColor: COLORS.Gnewtagred,
+                      borderRadius: 20,
+                      paddingHorizontal: 10,
+                      marginRight: 10,
+                    }}
+                  >
+                    <Text
+                      style={{ ...FONTS.h4, fontSize: 10, color: COLORS.white }}
+                    >
+                      Coming Soon
+                    </Text>
+                  </View>
+                  <Image
+                    source={icons.right_arrow}
+                    style={{ width: 10, height: 10, tintColor: COLORS.gray }}
+                  />
+                </View>
               </TouchableOpacity>
 
               {/* break line */}
@@ -243,6 +267,7 @@ const Profile = () => {
 
               {/* theme */}
               <TouchableOpacity
+                activeOpacity={1}
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -254,10 +279,28 @@ const Profile = () => {
                 onPress={() => console.log("Theme")}
               >
                 <Text style={{ ...FONTS.body4 }}>Theme</Text>
-                <Image
-                  source={icons.right_arrow}
-                  style={{ width: 10, height: 10, tintColor: COLORS.gray }}
-                />
+
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  {/* coming soon tag */}
+                  <View
+                    style={{
+                      backgroundColor: COLORS.Gnewtagred,
+                      borderRadius: 20,
+                      paddingHorizontal: 10,
+                      marginRight: 10,
+                    }}
+                  >
+                    <Text
+                      style={{ ...FONTS.h4, fontSize: 10, color: COLORS.white }}
+                    >
+                      Coming Soon
+                    </Text>
+                  </View>
+                  <Image
+                    source={icons.right_arrow}
+                    style={{ width: 10, height: 10, tintColor: COLORS.gray }}
+                  />
+                </View>
               </TouchableOpacity>
 
               {/* break line*/}
@@ -271,6 +314,7 @@ const Profile = () => {
 
               {/* faq */}
               <TouchableOpacity
+                activeOpacity={1}
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -299,6 +343,7 @@ const Profile = () => {
 
               {/* submit suggestion */}
               <TouchableOpacity
+                activeOpacity={1}
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -327,6 +372,7 @@ const Profile = () => {
 
               {/* rate 5 stars */}
               <TouchableOpacity
+                activeOpacity={1}
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -335,37 +381,11 @@ const Profile = () => {
                   paddingLeft: 20,
                   justifyContent: "space-between",
                 }}
-                onPress={() => console.log("Rate Us 5 Stars")}
+                onPress={() => {
+                  Linking.openURL("market://details?id=com.whatsapp");
+                }}
               >
                 <Text style={{ ...FONTS.body4 }}>Rate Us 5 Stars</Text>
-                <Image
-                  source={icons.right_arrow}
-                  style={{ width: 10, height: 10, tintColor: COLORS.gray }}
-                />
-              </TouchableOpacity>
-
-              {/* break line */}
-              <View
-                style={{
-                  height: 1,
-                  backgroundColor: COLORS.lightgray2,
-                  marginHorizontal: 15,
-                }}
-              ></View>
-
-              {/* privacy policy */}
-              <TouchableOpacity
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  paddingVertical: 12,
-                  paddingRight: 15,
-                  paddingLeft: 20,
-                  justifyContent: "space-between",
-                }}
-                onPress={() => console.log("Privacy Policy")}
-              >
-                <Text style={{ ...FONTS.body4 }}>Privacy Policy</Text>
                 <Image
                   source={icons.right_arrow}
                   style={{ width: 10, height: 10, tintColor: COLORS.gray }}

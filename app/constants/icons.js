@@ -19,6 +19,7 @@ const no_chat = require("../assets/icons/no_chat.png");
 const scan = require("../assets/icons/scan.png");
 const writing = require("../assets/icons/writing.png");
 const plus = require("../assets/icons/plus.png");
+const camera = require("../assets/icons/camera.png");
 
 export default {
   back_arrow,
@@ -42,4 +43,5 @@ export default {
   scan,
   writing,
   plus,
+  camera,
 };

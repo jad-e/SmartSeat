@@ -29,7 +29,6 @@ import {
   FAQContent6,
   FAQContent7,
   FAQContent8,
-  FAQContent9,
   FeedbackSubmission,
 } from "./app/screens";
 
@@ -170,12 +169,6 @@ export default function App() {
           <Stack.Screen
             name="FAQContent8"
             component={FAQContent8}
-            options={{ headerShown: false }}
-          />
-
-          <Stack.Screen
-            name="FAQContent9"
-            component={FAQContent9}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

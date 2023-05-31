@@ -34,40 +34,36 @@ const FAQ = () => {
   const FAQsData = [
     {
       id: 1,
-      title: "How do I make a seat reservation?",
-    },
-    {
-      id: 2,
       title:
         "Can I occupy a library seat without making a reservation beforehand?",
     },
     {
-      id: 3,
+      id: 2,
       title: "How do long and short break buttons work?",
     },
     {
-      id: 4,
+      id: 3,
       title:
         "Am I required to press the withdrawal button when I temporarily leave my reserved seat?",
     },
     {
-      id: 5,
+      id: 4,
       title: "What does the Assist Me feature do?",
     },
     {
-      id: 6,
+      id: 5,
       title: "What are violation records and blacklists?",
     },
     {
-      id: 7,
+      id: 6,
       title: "How do I change the app's language?",
     },
     {
-      id: 8,
+      id: 7,
       title: "How do I change the app's theme?",
     },
     {
-      id: 9,
+      id: 8,
       title: "Where can I submit a suggestion?",
     },
   ];

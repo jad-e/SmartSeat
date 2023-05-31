@@ -22,7 +22,7 @@ import {
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../../constants";
-const { faq6_1, faq6_2 } = images;
+const { faq4_1, faq4_2 } = images;
 
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
@@ -69,17 +69,42 @@ const FAQContent4 = ({ route, navigation }) => {
           <Text
             style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
           >
-            No. You are not required to tap on the withdrawal button if you only
-            plan to temporarily leave your reserved library seat. Instead, you
-            should choose an appropriate break option to cater to your needs.
+            If you require the librarian's assistance (e.g., removal of
+            unattended personal belongings), you may tap on the Assist Me
+            feature on the Home page. Within the pop up dialog box's input
+            field, supply your seat number then tap on the OK button.
           </Text>
+          <Text style={{ ...FONTS.h4, color: COLORS.black, marginBottom: 20 }}>
+            Note: You can find your seat number on the table.
+          </Text>
+
+          <Image
+            source={faq4_1}
+            style={{
+              marginBottom: 20,
+              width: 550,
+              height: 550,
+              alignSelf: "center",
+            }}
+            resizeMode="contain"
+          />
+
+          <Image
+            source={faq4_2}
+            style={{
+              marginBottom: 20,
+              width: 550,
+              height: 550,
+              alignSelf: "center",
+            }}
+            resizeMode="contain"
+          />
+
           <Text
             style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
           >
-            Tapping on the withdrawal button will release your reserved library
-            seat, allowing other students to reserve and occupy it. You should
-            only withdraw a library seat if you plan to permanently leave the
-            library.
+            The librarian will attend to you as soon as possible after receiving
+            your request for help.
           </Text>
         </ScrollView>
       </View>

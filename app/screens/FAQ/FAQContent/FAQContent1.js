@@ -22,7 +22,7 @@ import {
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../../constants";
-const { faq1_1 } = images;
+const { faq7_1 } = images;
 
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
@@ -69,26 +69,26 @@ const FAQContent1 = ({ route, navigation }) => {
           <Text
             style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
           >
-            On the Home page, you will be able to see a list of cards that
-            display the real-time seat availability information for different
-            types of campus libraries. To reserve a library seat, locate your
-            desired library's card. Then, tap on the "Click here for seat map"
-            button.
+            Yes. You may occupy a library seat even if you did not reserve it
+            beforehand. However, the SmartSeat system gives priority for
+            students who have made seat reservations through the mobile app.
           </Text>
 
-          <Image
-            source={faq1_1}
-            style={{
-              marginBottom: 20,
-              width: 550,
-              height: 550,
-              alignSelf: "center",
-            }}
-            resizeMode="contain"
-          />
+          <Text
+            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
+          >
+            For instance, if you sit on a vacant library seat without reserving
+            it, the color of your library seat in the seat map will remain as
+            green. In other words, there is a possibility for your seat to be
+            reserved and taken away by other students even though you are
+            currently occupying it.
+          </Text>
 
-          <Text style={{ ...FONTS.h2, color: COLORS.red, marginBottom: 20 }}>
-            TO BE CONTINUED
+          <Text
+            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
+          >
+            If you really want to secure a library seat for yourself, it is
+            recommended that you reserve it through the SmartSeat mobile app.
           </Text>
         </ScrollView>
       </View>

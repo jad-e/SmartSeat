@@ -32,7 +32,6 @@ import FAQContent5 from "./FAQ/FAQContent/FAQContent5";
 import FAQContent6 from "./FAQ/FAQContent/FAQContent6";
 import FAQContent7 from "./FAQ/FAQContent/FAQContent7";
 import FAQContent8 from "./FAQ/FAQContent/FAQContent8";
-import FAQContent9 from "./FAQ/FAQContent/FAQContent9";
 
 export {
   OnBoarding,
@@ -57,6 +56,5 @@ export {
   FAQContent6,
   FAQContent7,
   FAQContent8,
-  FAQContent9,
   FeedbackSubmission,
 };
