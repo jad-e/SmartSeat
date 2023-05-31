@@ -28,6 +28,9 @@ const ForgotPassword1 = () => {
 
   const onSendPressed = (data) => {
     console.log(data);
+
+    //send OTP???
+
     navigation.navigate("ForgotPassword2");
   };
 
