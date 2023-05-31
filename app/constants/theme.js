@@ -3,8 +3,17 @@ const { width, height } = Dimensions.get("window");
 
 export const COLORS = {
   //MAIN THEME 1 - FOREST APP
-  Fprimary: "",
-  Fsecondary: "",
+  Ftimeline_background: "#397b64",
+  Ftimeline_header: "#264136",
+
+  Ftimeline_pillarstudysession: "#51a286",
+  Ftimeline_pillarviolate: "#dad7d6",
+
+  Ftimeline_pillarcirclestudybg: "#ece654",
+  Ftimeline_pillarcircleviolatebg: "#273330",
+
+  Ftimeline_cardbackground: "#61af99",
+  Ftimeline_cardcirclebackground: "#e4e3a3",
 
   //MAIN THEME 2 -  GRAB APP
 

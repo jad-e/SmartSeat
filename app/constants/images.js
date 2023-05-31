@@ -30,6 +30,14 @@ export const faq5_1 = require("../assets/images/faq5_1.png");
 export const faq4_1 = require("../assets/images/faq4_1.png");
 export const faq4_2 = require("../assets/images/faq4_2.png");
 
+export const studycomplete1 = require("../assets/images/knowledge.png");
+export const studycomplete2 = require("../assets/images/globe.png");
+export const studycomplete3 = require("../assets/images/book.png");
+export const studycomplete4 = require("../assets/images/think.png");
+export const studycomplete5 = require("../assets/images/read.png");
+export const studycomplete6 = require("../assets/images/brain.png");
+export const timelinecardcircle = require("../assets/images/timelinecardcircle.png");
+
 export default {
   onboarding1,
   onboarding2,
@@ -53,4 +61,11 @@ export default {
   faq5_1,
   faq4_1,
   faq4_2,
+  studycomplete1,
+  studycomplete2,
+  studycomplete3,
+  studycomplete4,
+  studycomplete5,
+  studycomplete6,
+  timelinecardcircle,
 };
