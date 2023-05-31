@@ -22,7 +22,7 @@ import {
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../../constants";
-const { faq6_1 } = images;
+const { faq10_1, faq10_2, faq10_3 } = images;
 
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
@@ -31,10 +31,6 @@ function FocusAwareStatusBar(props) {
 }
 
 const FAQContent6 = ({ route, navigation }) => {
-  //states
-  const [vioCount, setVioCount] = React.useState(3);
-  const [blackPeriod, setBlackPeriod] = React.useState(4);
-
   const { title } = route.params;
   return (
     <>
@@ -73,68 +69,11 @@ const FAQContent6 = ({ route, navigation }) => {
           <Text
             style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
           >
-            To ensure the fair use of the library seat resources, violation
-            records and blacklists will be supplied to students who intend to
-            misuse the SmartSeat system.
+            As of now, users are unable to change the default language of the
+            SmartSeat app as it currently only supports the English language.
+            Support for other languages such as Chinese, Korean, Japanese, and
+            more will be provided in the near future.
           </Text>
-
-          <Text style={{ ...FONTS.h4, color: COLORS.black, marginBottom: 10 }}>
-            Violation Records
-          </Text>
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 10 }}
-          >
-            A student will be supplied with a violation record if he/she was
-            found guilty of either one of the following behaviours:
-          </Text>
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 5 }}
-          >
-            1. Failure to check-in at a library seat within the prescribed
-            reservation time limit.
-          </Text>
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 5 }}
-          >
-            2. Failure to return to a library seat within the prescribed break
-            time limit.
-          </Text>
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
-          >
-            3. Did not select a break option or tap on the seat withdrawal
-            button when leaving a reserved library seat.
-          </Text>
-          <Text style={{ ...FONTS.h4, color: COLORS.black, marginBottom: 10 }}>
-            Blacklists
-          </Text>
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
-          >
-            For students who have accumulated a total of {vioCount} violation
-            records, he/she will be blacklisted by the librarian. A blacklisted
-            student will be barred from using the SmartSeat application for{" "}
-            {blackPeriod} weeks.
-          </Text>
-          <Text style={{ ...FONTS.h4, color: COLORS.black, marginBottom: 10 }}>
-            Violation and Blacklist Count
-          </Text>
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
-          >
-            To keep track of your total number of violation records and
-            blacklists, you may head to your Profile page.
-          </Text>
-          <Image
-            source={faq6_1}
-            style={{
-              marginBottom: 20,
-              width: 550,
-              height: 550,
-              alignSelf: "center",
-            }}
-            resizeMode="contain"
-          />
         </ScrollView>
       </View>
     </>

@@ -69,10 +69,9 @@ const FAQContent7 = ({ route, navigation }) => {
           <Text
             style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
           >
-            As of now, users are unable to change the default language of the
-            SmartSeat app as it currently only supports the English language.
-            Support for other languages such as Chinese, Korean, Japanese, and
-            more will be provided in the near future.
+            As of now, the SmartSeat app does not support the changing of app
+            themes. However, rest assured that this feature is in the
+            development process and will be available soon!
           </Text>
         </ScrollView>
       </View>

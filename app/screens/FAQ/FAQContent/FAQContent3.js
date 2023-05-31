@@ -31,17 +31,6 @@ function FocusAwareStatusBar(props) {
 }
 
 const FAQContent3 = ({ route, navigation }) => {
-  //states
-  const [shortBreakTimeLimit, setShortBreakTimeLimit] = React.useState(20);
-  const [longBreakTimeLimit, setLongBreakTimeLimit] = React.useState(60);
-  const [shortBreakCount, setShortBreakCount] = React.useState(10);
-
-  const [lunchHourStart, setLunchHourStart] = React.useState("11:00");
-  const [lunchHourEnd, setLunchHourEnd] = React.useState("13:00");
-
-  const [dinnerHourStart, setDinnerHourStart] = React.useState("18:00");
-  const [dinnerHourEnd, setDinnerHourEnd] = React.useState("20:00");
-
   const { title } = route.params;
   return (
     <>
@@ -80,65 +69,17 @@ const FAQContent3 = ({ route, navigation }) => {
           <Text
             style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
           >
-            When you plan to temporarily leave your reserved library seat, you
-            are required to select either one of the provided break options.
-            There are two main types of break options: long break and short
-            break.
-          </Text>
-
-          <Text style={{ ...FONTS.h4, color: COLORS.black, marginBottom: 10 }}>
-            Long Breaks
-          </Text>
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 10 }}
-          >
-            There are two types of long breaks, namely lunch break and dinner
-            break. Each type of long break has a time limit of{" "}
-            {longBreakTimeLimit} minutes and can only be used once during the
-            specified hours:
-          </Text>
-
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 5 }}
-          >
-            1. Lunch hours are from {lunchHourStart} to {lunchHourEnd}.
+            No. You are not required to tap on the withdrawal button if you only
+            plan to temporarily leave your reserved library seat. Instead, you
+            should choose an appropriate break option to cater to your needs.
           </Text>
           <Text
             style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
           >
-            2. Dinner hours are from {dinnerHourStart} to {dinnerHourEnd}.
-          </Text>
-
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
-          >
-            Additionally, when you are on a long break, the color of your seat
-            (in the seat map) will change from{" "}
-            <Text style={{ ...FONTS.h4, color: COLORS.red }}>red</Text> to{" "}
-            <Text style={{ ...FONTS.h4, color: COLORS.Gblue }}>blue</Text>. This
-            means that other students are entitled to temporarily occupy your
-            seat while you are away. Thus, please make sure to pack your stuff
-            away before leaving for a meal break.
-          </Text>
-
-          <Text style={{ ...FONTS.h4, color: COLORS.black, marginBottom: 10 }}>
-            Short Breaks
-          </Text>
-          <Text
-            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
-          >
-            In terms of the short break option, it is suitable to be used when
-            you only plan to leave the library for a short study break, toilet
-            break, or any activity that can be completed within a short amount
-            of time. The short break option can be used for a maximum of{" "}
-            {shortBreakCount} times during your entire seat reservation period.
-            Each short break has a time limit of {shortBreakTimeLimit} minutes.
-          </Text>
-
-          <Text style={{ ...FONTS.h4, color: COLORS.black, marginBottom: 20 }}>
-            Note: To avoid loosing your reserved library seat, you are required
-            to return to your seat before the prescribed long/short break time
-            limit ends.
+            Tapping on the withdrawal button will release your reserved library
+            seat, allowing other students to reserve and occupy it. You should
+            only withdraw a library seat if you plan to permanently leave the
+            library.
           </Text>
         </ScrollView>
       </View>

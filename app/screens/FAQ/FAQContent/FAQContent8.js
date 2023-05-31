@@ -22,7 +22,7 @@ import {
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../../constants";
-const { faq10_1, faq10_2, faq10_3 } = images;
+const { faq8_1, faq8_2, faq8_3 } = images;
 
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
@@ -69,10 +69,57 @@ const FAQContent8 = ({ route, navigation }) => {
           <Text
             style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
           >
-            As of now, the SmartSeat app does not support the changing of app
-            themes. However, rest assured that this feature is in the
-            development process and will be available soon!
+            If you have encountered any problems with the SmartSeat app, you may
+            submit your feedback to us by going to Profile &gt; Submit a
+            Suggestion.
           </Text>
+          <Image
+            source={faq8_1}
+            style={{
+              marginBottom: 20,
+              width: 550,
+              height: 550,
+              alignSelf: "center",
+            }}
+            resizeMode="contain"
+          />
+          <Text
+            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
+          >
+            Alternatively, you can also click on Feedback Submission at the
+            bottom of the FAQs and Support page.
+          </Text>
+          <Image
+            source={faq8_2}
+            style={{
+              marginBottom: 20,
+              width: 550,
+              height: 550,
+              alignSelf: "center",
+            }}
+            resizeMode="contain"
+          />
+          <Text style={{ ...FONTS.h4, color: COLORS.black, marginBottom: 10 }}>
+            Submitting a Suggestion
+          </Text>
+          <Text
+            style={{ ...FONTS.body4, color: COLORS.black, marginBottom: 20 }}
+          >
+            You will be required to provide a brief description of your problem
+            in not more than 300 words. To help us understand your problem
+            better, you may also choose to include some pictures that are
+            related to your problem.
+          </Text>
+          <Image
+            source={faq8_3}
+            style={{
+              marginBottom: 20,
+              width: 550,
+              height: 550,
+              alignSelf: "center",
+            }}
+            resizeMode="contain"
+          />
         </ScrollView>
       </View>
     </>
