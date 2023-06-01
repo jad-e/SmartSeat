@@ -435,6 +435,10 @@ const ConfirmedReservation = () => {
         <TouchableOpacity
           activeOpacity={1}
           onPress={() => {
+            navigation.navigate("ScanQR");
+
+            console.log("i am back!");
+
             setStudyState(true);
           }}
         >

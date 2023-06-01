@@ -42,6 +42,9 @@ const spoonfork = require("../assets/icons/spoon-and-fork.png");
 const coffee = require("../assets/icons/coffee.png");
 const exit = require("../assets/icons/exit.png");
 
+const close = require("../assets/icons/close.png");
+const torch = require("../assets/icons/torch.png");
+
 export default {
   back_arrow,
   home,
@@ -82,4 +85,6 @@ export default {
   spoonfork,
   coffee,
   exit,
+  close,
+  torch,
 };

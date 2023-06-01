@@ -42,6 +42,8 @@ export const study = require("../assets/images/study.png");
 export const tea = require("../assets/images/tea.png");
 export const lunch_time = require("../assets/images/lunch-time.png");
 
+export const focus = require("../assets/images/focus.png");
+
 export default {
   onboarding1,
   onboarding2,
@@ -75,4 +77,5 @@ export default {
   study,
   tea,
   lunch_time,
+  focus,
 };

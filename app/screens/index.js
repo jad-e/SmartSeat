@@ -33,6 +33,8 @@ import FAQContent6 from "./FAQ/FAQContent/FAQContent6";
 import FAQContent7 from "./FAQ/FAQContent/FAQContent7";
 import FAQContent8 from "./FAQ/FAQContent/FAQContent8";
 
+import ScanQR from "./ScanQR/ScanQR";
+
 export {
   OnBoarding,
   SignIn,
@@ -57,4 +59,5 @@ export {
   FAQContent7,
   FAQContent8,
   FeedbackSubmission,
+  ScanQR,
 };
