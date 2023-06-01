@@ -38,6 +38,10 @@ export const studycomplete5 = require("../assets/images/read.png");
 export const studycomplete6 = require("../assets/images/brain.png");
 export const timelinecardcircle = require("../assets/images/timelinecardcircle.png");
 
+export const study = require("../assets/images/study.png");
+export const tea = require("../assets/images/tea.png");
+export const lunch_time = require("../assets/images/lunch-time.png");
+
 export default {
   onboarding1,
   onboarding2,
@@ -68,4 +72,7 @@ export default {
   studycomplete5,
   studycomplete6,
   timelinecardcircle,
+  study,
+  tea,
+  lunch_time,
 };

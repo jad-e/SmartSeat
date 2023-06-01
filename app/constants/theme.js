@@ -15,6 +15,9 @@ export const COLORS = {
   Ftimeline_cardbackground: "#61af99",
   Ftimeline_cardcirclebackground: "#e4e3a3",
 
+  Ftimer_bg: "#53a386",
+  Ftimer_circleborder: "#c9c76e",
+
   //MAIN THEME 2 -  GRAB APP
 
   appmain: "#35C073", //app icon, logo, onboarding, etc....
@@ -32,9 +35,10 @@ export const COLORS = {
 
   Gnotitabselected: "#005239",
   Gnotitabunselected: "#EEF8FA",
+
   Giconorangefore: "#F4670B",
   Giconorangeback: "#FFF4EA",
-  gicongreenfore: "#02B14F",
+  Gicongreenfore: "#02B14F",
   Gicongreenback: "#DAFBDD",
 
   Gbuttonbackground1_positiveback: "#35C073", //type 1 (full btn)

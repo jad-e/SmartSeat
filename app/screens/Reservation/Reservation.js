@@ -27,25 +27,14 @@ import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { profilepic, profilepictest } = images;
 
-function FocusAwareStatusBar(props) {
-  const isFocused = useIsFocused();
-
-  return isFocused ? <StatusBar {...props} /> : null;
-}
-
 const Reservation = () => {
   // 0 : no reservation
   // 1: pending reservation
   // 2: confirmed reservation
-  const [reservationState, setReservationState] = React.useState(2);
+  const [reservationState, setReservationState] = React.useState(1);
 
   return (
     <>
-      <FocusAwareStatusBar
-        barStyle="dark-content"
-        backgroundColor={COLORS.white}
-      />
-
       {reservationState == 0 ? (
         <NoReservation />
       ) : reservationState == 1 ? (
@@ -56,20 +45,5 @@ const Reservation = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: COLORS.white,
-    flex: 1,
-    width: SIZES.width,
-    height: SIZES.height,
-  },
-  shadowProp: {
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 10,
-  },
-});
 
 export default Reservation;
