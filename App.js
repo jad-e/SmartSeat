@@ -1,4 +1,5 @@
 import "react-native-gesture-handler";
+import "react-native-reanimated";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -30,6 +31,7 @@ import {
   FAQContent7,
   FAQContent8,
   FeedbackSubmission,
+  ScanQR,
 } from "./app/screens";
 
 import { images, icons, theme, COLORS, SIZES, FONTS } from "./app/constants";
@@ -169,6 +171,12 @@ export default function App() {
           <Stack.Screen
             name="FAQContent8"
             component={FAQContent8}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name="ScanQR"
+            component={ScanQR}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

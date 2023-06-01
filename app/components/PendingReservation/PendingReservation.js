@@ -135,7 +135,11 @@ const PendingReservation = () => {
             }}
           >
             <Pressable
-              onPress={() => console.log("check-in")}
+              onPress={() => {
+                console.log("check-in");
+
+                navigation.navigate("ScanQR");
+              }}
               style={{
                 borderWidth: 7.5,
                 borderColor: COLORS.Gsplashlight,

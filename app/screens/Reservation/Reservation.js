@@ -31,7 +31,7 @@ const Reservation = () => {
   // 0 : no reservation
   // 1: pending reservation
   // 2: confirmed reservation
-  const [reservationState, setReservationState] = React.useState(1);
+  const [reservationState, setReservationState] = React.useState(2);
 
   return (
     <>
