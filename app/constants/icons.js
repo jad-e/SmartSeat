@@ -38,6 +38,10 @@ const pin3 = require("../assets/icons/pin3.png");
 const card1 = require("../assets/icons/card1.png");
 const card2 = require("../assets/icons/card2.png");
 
+const spoonfork = require("../assets/icons/spoon-and-fork.png");
+const coffee = require("../assets/icons/coffee.png");
+const exit = require("../assets/icons/exit.png");
+
 export default {
   back_arrow,
   home,
@@ -75,4 +79,7 @@ export default {
   pin3,
   card1,
   card2,
+  spoonfork,
+  coffee,
+  exit,
 };
