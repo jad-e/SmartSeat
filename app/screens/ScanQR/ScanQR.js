@@ -51,7 +51,7 @@ function FocusAwareStatusBar(props) {
 
 const ScanQR = ({ navigation }) => {
   // states
-  const [torchStatus, setTorchStatus] = React.useState(false);
+  const [torchStatus, setTorchStatus] = React.useState("off");
 
   const [barcode, setBarcode] = React.useState("");
   const [isScanned, setIsScanned] = React.useState(false);
@@ -148,25 +148,13 @@ const ScanQR = ({ navigation }) => {
     );
   }
 
-  const torch = async () => {
+  const torch = () => {
     console.log("torch");
 
-    const cameraAllowed = await Torch.requestCameraPermission(
-      "Camera Permissions", // dialog title
-      "We require camera permissions to use the torch on the back of your phone." // dialog body
-    );
-
-    if (cameraAllowed) {
-      if (!torchStatus) {
-        Torch.switchState(true);
-
-        setTorchStatus(true);
-      } else {
-        //close torch
-        Torch.switchState(false);
-
-        setTorchStatus(false);
-      }
+    if (torchStatus == "off") {
+      setTorchStatus("on");
+    } else {
+      setTorchStatus("off");
     }
   };
 
@@ -234,6 +222,7 @@ const ScanQR = ({ navigation }) => {
             enableZoomGesture
             frameProcessor={frameProcessor}
             frameProcessorFps={5}
+            torch={torchStatus}
           />
           {renderHeader()}
 
