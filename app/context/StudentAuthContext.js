@@ -1,5 +1,7 @@
 import { createContext, useReducer, useEffect } from "react";
 
+import EncryptedStorage from "react-native-encrypted-storage";
+
 export const StudentAuthContext = createContext();
 
 export const studentAuthReducer = (state, action) => {
@@ -20,7 +22,7 @@ export const StudentAuthContextProvider = ({ children }) => {
 
   //check if student user is already logged in from last time
   useEffect(() => {
-    const studentUser = JSON.parse(localStorage.getItem("studentUser"));
+    const studentUser = JSON.parse(EncryptedStorage.getItem("studentUser"));
 
     if (studentUser) {
       dispatch({ type: "LOGIN", payload: studentUser });

@@ -1,13 +1,22 @@
 import { useStudentAuthContext } from "./useStudentAuthContext";
 // import { useWorkoutsContext } from "./useWorkoutsContext";
 
+import EncryptedStorage from "react-native-encrypted-storage";
+
 export const useStudentLogout = () => {
   const { dispatch } = useStudentAuthContext();
   //   const { dispatch: workoutsDispatch } = useWorkoutsContext();
 
-  const logout = () => {
+  const logout = async () => {
     //remove student user from local storage
-    localStorage.removeItem("studentUser");
+    try {
+      await EncryptedStorage.removeItem("studentUser");
+      // Congrats! You've just removed your first value!
+    } catch (error) {
+      console.log(
+        "EncryptedStorage ERROR (can't remove from local storage): " + error
+      );
+    }
 
     //dispatch logout action
     dispatch({ type: "LOGOUT" });
