@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useStudentAuthContext } from "./useStudentAuthContext";
 
+import EncryptedStorage from "react-native-encrypted-storage";
+
 export const useStudentLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
@@ -28,7 +30,15 @@ export const useStudentLogin = () => {
 
     if (response.ok) {
       //save the student user (username and json web token) to local storage
-      localStorage.setItem("studentUser", JSON.stringify(json));
+      try {
+        await EncryptedStorage.setItem("studentUser", JSON.stringify(json));
+
+        // Congrats! You've just stored your first value!
+      } catch (error) {
+        console.log(
+          "EncryptedStorage ERROR (can't store in local storage): " + error
+        );
+      }
 
       //update the student auth context
       dispatch({ type: "LOGIN", payload: json });
