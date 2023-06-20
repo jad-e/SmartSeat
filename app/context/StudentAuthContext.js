@@ -22,11 +22,20 @@ export const StudentAuthContextProvider = ({ children }) => {
 
   //check if student user is already logged in from last time
   useEffect(() => {
-    const studentUser = JSON.parse(EncryptedStorage.getItem("studentUser"));
+    const check = async () => {
+      try {
+        const studentUser = await EncryptedStorage.getItem("studentUser");
 
-    if (studentUser) {
-      dispatch({ type: "LOGIN", payload: studentUser });
-    }
+        if (studentUser) {
+          dispatch({ type: "LOGIN", payload: studentUser });
+        }
+      } catch (error) {
+        // There was an error on the native side
+        console.log(error);
+      }
+    };
+
+    check();
   }, []); //only fires once when the components first renders)
 
   console.log("StudentAuthContext state: ", state); //everytime the state (student user login state) changes, this will be logged

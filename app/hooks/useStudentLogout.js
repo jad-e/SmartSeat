@@ -18,6 +18,8 @@ export const useStudentLogout = () => {
       );
     }
 
+    //double check if encrypted storage is really empty?
+
     //dispatch logout action
     dispatch({ type: "LOGOUT" });
 

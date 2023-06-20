@@ -16,9 +16,11 @@ const CustomButton1 = ({
   lineHeight = 22,
   width = "100%",
   color = COLORS.Gbuttonbackground1_positivefore,
+  disabled = false,
 }) => {
   return (
     <Pressable
+      disabled={disabled}
       onPress={onPress}
       style={[
         styles.container,
