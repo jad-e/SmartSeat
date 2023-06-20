@@ -27,6 +27,10 @@ import { useStudentLogout } from "../../hooks/useStudentLogout";
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { profilepic, profilepictest } = images;
 
+//context
+import { useStudentDataContext } from "../../hooks/useStudentDataContext";
+import { useStudentAuthContext } from "../../hooks/useStudentAuthContext";
+
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
 
@@ -40,6 +44,31 @@ const Profile = () => {
   const navigation = useNavigation();
 
   const { logout } = useStudentLogout();
+
+  const { studentData, dispatch } = useStudentDataContext();
+  const { studentUser } = useStudentAuthContext();
+
+  React.useEffect(() => {
+    const fetchStudentData = async () => {
+      const response = await fetch(
+        "http://192.168.0.150:4000/api/studentData/1",
+        {
+          headers: {
+            Authorization: `Bearer ${studentUser.token}`,
+          },
+        }
+      ); //4000 is the port that server is listening to
+
+      const json = await response.json(); //parsed into an array of objects
+
+      //check if response if ok (data get back successfully)
+      if (response.ok) {
+        dispatch({ type: "SET_STUDENT", payload: json });
+      }
+    };
+
+    fetchStudentData();
+  }, [dispatch]); //only fires once when the Student page first renders
 
   const onSignOutPressed = (data) => {
     logout();
@@ -86,22 +115,24 @@ const Profile = () => {
                   }}
                 >
                   {/* name, email addr, and profile pic section */}
-                  <View
-                    style={{
-                      width: "70%",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Text style={{ ...FONTS.h2, color: COLORS.black }}>
-                      P19010770
-                    </Text>
-                    <Text
-                      numberOfLines={1}
-                      style={{ ...FONTS.body5, color: COLORS.gray }}
+                  {studentData && (
+                    <View
+                      style={{
+                        width: "70%",
+                        flexDirection: "column",
+                      }}
                     >
-                      p19010770@student.newinti.edu.my
-                    </Text>
-                  </View>
+                      <Text style={{ ...FONTS.h2, color: COLORS.black }}>
+                        {studentData.username}
+                      </Text>
+                      <Text
+                        numberOfLines={1}
+                        style={{ ...FONTS.body5, color: COLORS.gray }}
+                      >
+                        {studentData.email}
+                      </Text>
+                    </View>
+                  )}
 
                   {/* image section */}
                   <View
@@ -131,75 +162,77 @@ const Profile = () => {
               </TouchableOpacity>
 
               {/* bottom section (violation records & blacklist count) */}
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
+              {studentData && (
                 <View
                   style={{
-                    flexDirection: "column",
-                    alignItems: "center",
-                    width: 90,
+                    flexDirection: "row",
+                    justifyContent: "space-between",
                   }}
                 >
-                  <Text
+                  <View
                     style={{
-                      ...FONTS.body3,
-                      color: COLORS.black,
-                      fontWeight: 600,
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: 90,
                     }}
                   >
-                    5
-                  </Text>
-                  <Text style={{ ...FONTS.body4a, color: COLORS.darkgray }}>
-                    Reservations
-                  </Text>
-                </View>
+                    <Text
+                      style={{
+                        ...FONTS.body3,
+                        color: COLORS.black,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {studentData.reserveNum}
+                    </Text>
+                    <Text style={{ ...FONTS.body4a, color: COLORS.darkgray }}>
+                      Reservations
+                    </Text>
+                  </View>
 
-                <View
-                  style={{
-                    flexDirection: "column",
-                    alignItems: "center",
-                    width: 90,
-                  }}
-                >
-                  <Text
+                  <View
                     style={{
-                      ...FONTS.body3,
-                      color: COLORS.black,
-                      fontWeight: 600,
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: 90,
                     }}
                   >
-                    2
-                  </Text>
-                  <Text style={{ ...FONTS.body4a, color: COLORS.darkgray }}>
-                    Violations
-                  </Text>
-                </View>
+                    <Text
+                      style={{
+                        ...FONTS.body3,
+                        color: COLORS.black,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {studentData.violateNum}
+                    </Text>
+                    <Text style={{ ...FONTS.body4a, color: COLORS.darkgray }}>
+                      Violations
+                    </Text>
+                  </View>
 
-                <View
-                  style={{
-                    flexDirection: "column",
-                    alignItems: "center",
-                    width: 90,
-                  }}
-                >
-                  <Text
+                  <View
                     style={{
-                      ...FONTS.body3,
-                      color: COLORS.black,
-                      fontWeight: 600,
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: 90,
                     }}
                   >
-                    0
-                  </Text>
-                  <Text style={{ ...FONTS.body4a, color: COLORS.darkgray }}>
-                    Blacklists
-                  </Text>
+                    <Text
+                      style={{
+                        ...FONTS.body3,
+                        color: COLORS.black,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {studentData.blacklistNum}
+                    </Text>
+                    <Text style={{ ...FONTS.body4a, color: COLORS.darkgray }}>
+                      Blacklists
+                    </Text>
+                  </View>
                 </View>
-              </View>
+              )}
             </View>
           </DropShadow>
 
