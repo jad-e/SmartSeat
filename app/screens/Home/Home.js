@@ -8,6 +8,7 @@ import {
   ScrollView,
   StatusBar,
   rgba,
+  ToastAndroid,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -40,6 +41,9 @@ import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { appname } = images;
 
+//context
+import { useStudentDataContext } from "../../hooks/useStudentDataContext";
+
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
 
@@ -51,6 +55,30 @@ const Home = () => {
   // 1: Can talk, 10: cannot talk
   // 2: food allowed, 20: food not allowed
   // 3: drinks allowed, 30: drinks not allowed
+
+  const { studentData, dispatch } = useStudentDataContext();
+
+  React.useEffect(() => {
+    const fetchStudentData = async () => {
+      const response = await fetch(
+        "http://192.168.0.150:4000/api/studentData/1",
+        {
+          headers: {
+            Authorization: `Bearer ${studentUser.token}`,
+          },
+        }
+      ); //4000 is the port that server is listening to
+
+      const json = await response.json(); //parsed into an array of objects
+
+      //check if response if ok (data get back successfully)
+      if (response.ok) {
+        dispatch({ type: "SET_STUDENT", payload: json });
+      }
+    };
+
+    fetchStudentData();
+  }, [dispatch]); //only fires once when the Student page first renders
 
   const studySpacesData = [
     {
@@ -133,8 +161,9 @@ const Home = () => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: { seatNumber: "" } });
 
   // on press functions
   const onMoreFeaturePressed = () => {
@@ -183,8 +212,60 @@ const Home = () => {
     navigation.navigate("FAQ");
   };
 
-  const onDialogOKPressed = (data) => {
+  const onDialogOKPressed = async (data) => {
     setPopUpDialogState(false);
+
+    //current data and time
+    const date = new Date().toLocaleDateString();
+    const time = new Date().toLocaleTimeString("en-US", {
+      hour12: false,
+      hour: "numeric",
+      minute: "numeric",
+    });
+
+    //make an assistance request object
+    const assistanceRequest = {
+      username: studentData.username,
+      name: studentData.name,
+      seatNumber: data.seatNumber,
+      dateTime: date + " " + time,
+      status: "Not Done",
+    };
+
+    const response = await fetch(
+      "http://192.168.0.150:4000/api/assistanceRequest",
+      {
+        method: "POST",
+        body: JSON.stringify(assistanceRequest), //changes the object into a json string
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      reset(); //clear form
+      ToastAndroid.showWithGravityAndOffset(
+        json.error,
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        0,
+        250
+      );
+    }
+
+    if (response.ok) {
+      reset(); //clear form
+      ToastAndroid.showWithGravityAndOffset(
+        "Assistance request sent.",
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        0,
+        250
+      );
+    }
   };
 
   //states
@@ -762,7 +843,7 @@ const Home = () => {
               The librarian will arrive shortly to assist you.
             </Text>
             <CustomInput
-              name="seat-number"
+              name="seatNumber"
               placeholder="Seat Number"
               secureTextEntry={false}
               control={control}

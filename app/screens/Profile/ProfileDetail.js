@@ -40,6 +40,10 @@ import * as ImagePicker from "expo-image-picker";
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { profilepic, profilepictest } = images;
 
+//context
+import { useStudentDataContext } from "../../hooks/useStudentDataContext";
+import { useStudentAuthContext } from "../../hooks/useStudentAuthContext";
+
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
 
@@ -50,6 +54,31 @@ const ProfileDetail = () => {
   //states
   const [profileImgPath, setProfileImgPath] = React.useState(null);
   const [profileImgModalState, setProfileImgModalState] = React.useState(false); //track the state of the modal
+
+  const { studentData, dispatch } = useStudentDataContext();
+  const { studentUser } = useStudentAuthContext();
+
+  React.useEffect(() => {
+    const fetchStudentData = async () => {
+      const response = await fetch(
+        "http://192.168.0.150:4000/api/studentData/1",
+        {
+          headers: {
+            Authorization: `Bearer ${studentUser.token}`,
+          },
+        }
+      ); //4000 is the port that server is listening to
+
+      const json = await response.json(); //parsed into an array of objects
+
+      //check if response if ok (data get back successfully)
+      if (response.ok) {
+        dispatch({ type: "SET_STUDENT", payload: json });
+      }
+    };
+
+    fetchStudentData();
+  }, [dispatch, studentData]); //only fires once when the Student page first renders
 
   const ChangeProfileImageBTSPressed = () => {
     console.log("Change profile Image BTS pressed");
@@ -152,180 +181,190 @@ const ProfileDetail = () => {
           {/* Profile Information Section */}
 
           {/* name */}
-          <View style={{ backgroundColor: COLORS.white }}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                paddingVertical: 12,
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={{ ...FONTS.body4, color: COLORS.black }}>Name</Text>
+          {studentData && (
+            <View style={{ backgroundColor: COLORS.white }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingVertical: 12,
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  Name
+                </Text>
 
-              <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
-                Khoo Hui Ying
-              </Text>
+                <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
+                  {studentData.name}
+                </Text>
+              </View>
+
+              {/* break line */}
+              <View
+                style={{
+                  height: 1,
+                  backgroundColor: COLORS.lightgray2,
+                }}
+              ></View>
+
+              {/* username */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingVertical: 12,
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  Username
+                </Text>
+
+                <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
+                  {studentData.username}
+                </Text>
+              </View>
+
+              {/* break line */}
+              <View
+                style={{
+                  height: 1,
+                  backgroundColor: COLORS.lightgray2,
+                }}
+              ></View>
+
+              {/* Email */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingVertical: 12,
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  Email
+                </Text>
+
+                <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
+                  {studentData.email}
+                </Text>
+              </View>
+
+              {/* break line */}
+              <View
+                style={{
+                  height: 1,
+                  backgroundColor: COLORS.lightgray2,
+                }}
+              ></View>
+
+              {/* Phone Number */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingVertical: 12,
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  Phone Number
+                </Text>
+
+                <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
+                  {studentData.phoneNumber}
+                </Text>
+              </View>
+
+              {/* break line */}
+              <View
+                style={{
+                  height: 1,
+                  backgroundColor: COLORS.lightgray2,
+                }}
+              ></View>
+
+              {/* Gender */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingVertical: 12,
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  Gender
+                </Text>
+
+                <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
+                  {studentData.gender}
+                </Text>
+              </View>
+
+              {/* break line */}
+              <View
+                style={{
+                  height: 1,
+                  backgroundColor: COLORS.lightgray2,
+                }}
+              ></View>
+
+              {/* Birthday */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingVertical: 12,
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  Birthday
+                </Text>
+
+                <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
+                  {studentData.birthday}
+                </Text>
+              </View>
+
+              {/* break line */}
+              <View
+                style={{
+                  height: 1,
+                  backgroundColor: COLORS.lightgray2,
+                }}
+              ></View>
+
+              {/* School */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingVertical: 12,
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={{ ...FONTS.body4, color: COLORS.black }}>
+                  School
+                </Text>
+
+                <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
+                  {studentData.school}
+                </Text>
+              </View>
+
+              {/* break line */}
+              <View
+                style={{
+                  height: 1,
+                  backgroundColor: COLORS.lightgray2,
+                }}
+              ></View>
             </View>
-
-            {/* break line */}
-            <View
-              style={{
-                height: 1,
-                backgroundColor: COLORS.lightgray2,
-              }}
-            ></View>
-
-            {/* username */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                paddingVertical: 12,
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={{ ...FONTS.body4, color: COLORS.black }}>
-                Username
-              </Text>
-
-              <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
-                P19010770
-              </Text>
-            </View>
-
-            {/* break line */}
-            <View
-              style={{
-                height: 1,
-                backgroundColor: COLORS.lightgray2,
-              }}
-            ></View>
-
-            {/* Email */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                paddingVertical: 12,
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={{ ...FONTS.body4, color: COLORS.black }}>Email</Text>
-
-              <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
-                p19010770@student.newinti.edu.my
-              </Text>
-            </View>
-
-            {/* break line */}
-            <View
-              style={{
-                height: 1,
-                backgroundColor: COLORS.lightgray2,
-              }}
-            ></View>
-
-            {/* Phone Number */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                paddingVertical: 12,
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={{ ...FONTS.body4, color: COLORS.black }}>
-                Phone Number
-              </Text>
-
-              <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
-                +60175860818
-              </Text>
-            </View>
-
-            {/* break line */}
-            <View
-              style={{
-                height: 1,
-                backgroundColor: COLORS.lightgray2,
-              }}
-            ></View>
-
-            {/* Gender */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                paddingVertical: 12,
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={{ ...FONTS.body4, color: COLORS.black }}>
-                Gender
-              </Text>
-
-              <Text style={{ ...FONTS.body4, color: COLORS.gray }}>Female</Text>
-            </View>
-
-            {/* break line */}
-            <View
-              style={{
-                height: 1,
-                backgroundColor: COLORS.lightgray2,
-              }}
-            ></View>
-
-            {/* Birthday */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                paddingVertical: 12,
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={{ ...FONTS.body4, color: COLORS.black }}>
-                Birthday
-              </Text>
-
-              <Text style={{ ...FONTS.body4, color: COLORS.gray }}>
-                2001-06-25
-              </Text>
-            </View>
-
-            {/* break line */}
-            <View
-              style={{
-                height: 1,
-                backgroundColor: COLORS.lightgray2,
-              }}
-            ></View>
-
-            {/* School */}
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                paddingVertical: 12,
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={{ ...FONTS.body4, color: COLORS.black }}>
-                School
-              </Text>
-
-              <Text style={{ ...FONTS.body4, color: COLORS.gray }}>BCSCU</Text>
-            </View>
-
-            {/* break line */}
-            <View
-              style={{
-                height: 1,
-                backgroundColor: COLORS.lightgray2,
-              }}
-            ></View>
-          </View>
+          )}
         </View>
       </ScrollView>
 
