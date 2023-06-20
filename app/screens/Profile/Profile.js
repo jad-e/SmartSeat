@@ -22,6 +22,8 @@ import {
 
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 
+import { useStudentLogout } from "../../hooks/useStudentLogout";
+
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { profilepic, profilepictest } = images;
 
@@ -37,7 +39,10 @@ const Profile = () => {
 
   const navigation = useNavigation();
 
+  const { logout } = useStudentLogout();
+
   const onSignOutPressed = (data) => {
+    logout();
     navigation.navigate("SignIn");
   };
 

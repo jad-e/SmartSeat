@@ -1,4 +1,11 @@
-import { View, Image, StyleSheet, ScrollView, StatusBar } from "react-native";
+import {
+  View,
+  Image,
+  StyleSheet,
+  ScrollView,
+  StatusBar,
+  ToastAndroid,
+} from "react-native";
 
 import {
   CustomInput,
@@ -7,13 +14,17 @@ import {
   CustomButton3,
 } from "../../components";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 
 // Constants
 import { images, icons, theme, COLORS, SIZES, FONTS } from "../../constants";
 const { applogo1, applogo2 } = images;
+
+//hooks
+import { useStudentLogin } from "../../hooks/useStudentLogin";
+import { useStudentAuthContext } from "../../hooks/useStudentAuthContext";
 
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
@@ -24,16 +35,30 @@ function FocusAwareStatusBar(props) {
 const SignIn = () => {
   const navigation = useNavigation();
 
+  const { login, error, isLoading } = useStudentLogin();
+  const { studentUser } = useStudentAuthContext();
+
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: { username: "", password: "" } });
 
-  const onSignInPressed = (data) => {
-    console.log(data);
+  //check if already signed in last time
+  useEffect(() => {
+    if (studentUser) {
+      //if studentUser is NOT null
+      console.log("Check if user is already logged in: " + studentUser);
+      reset();
+      navigation.navigate("Home");
+    }
+  }, [studentUser]);
 
-    navigation.navigate("Home");
+  const onSignInPressed = async (data, e) => {
+    e.preventDefault();
+
+    await login(data.username, data.password);
   };
 
   const onForgotPasswordPressed = () => {
@@ -76,6 +101,7 @@ const SignIn = () => {
             onPress={handleSubmit(onSignInPressed)}
             marginTop={35}
             marginBottom={20}
+            disabled={isLoading}
           />
 
           <CustomButton3

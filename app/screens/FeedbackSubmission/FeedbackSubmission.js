@@ -134,10 +134,12 @@ const FeedbackSubmission = () => {
         console.log(status);
 
         //toast message
-        ToastAndroid.showWithGravity(
+        ToastAndroid.showWithGravityAndOffset(
           "Email sent!",
           ToastAndroid.SHORT,
-          ToastAndroid.BOTTOM
+          ToastAndroid.BOTTOM,
+          0,
+          250
         );
 
         //clear form
