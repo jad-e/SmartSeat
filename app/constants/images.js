@@ -44,6 +44,12 @@ export const lunch_time = require("../assets/images/lunch-time.png");
 
 export const focus = require("../assets/images/focus.png");
 
+export const lvl5a = require("../assets/images/lvl5-a01-a08.png");
+export const lvl5b = require("../assets/images/lvl5-b01-b04.png");
+export const lvl6a = require("../assets/images/lvl6-a01-a60.png");
+export const lvl6b = require("../assets/images/lvl6-b01-b14.png");
+export const lvl6c = require("../assets/images/lvl6-c01-c68.png");
+
 export default {
   onboarding1,
   onboarding2,
@@ -78,4 +84,9 @@ export default {
   tea,
   lunch_time,
   focus,
+  lvl5a,
+  lvl5b,
+  lvl6a,
+  lvl6b,
+  lvl6c,
 };

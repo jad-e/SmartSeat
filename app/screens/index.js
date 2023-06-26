@@ -12,8 +12,6 @@ import Home from "./Home/Home";
 
 import Timeline from "./Timeline/Timeline";
 
-import Reservation from "./Reservation/Reservation";
-
 import Notifications from "./Notifications/Notifications";
 
 import Profile from "./Profile/Profile";
@@ -34,6 +32,13 @@ import FAQContent7 from "./FAQ/FAQContent/FAQContent7";
 import FAQContent8 from "./FAQ/FAQContent/FAQContent8";
 
 import ScanQR from "./ScanQR/ScanQR";
+import ScanQRBreakCheckIn from "./ScanQR/ScanQRBreakCheckIn";
+
+import IndoorNav from "./IndoorNav/IndoorNav";
+
+import NoReservation from "./NoReservation/NoReservation";
+import PendingReservation from "./PendingReservation/PendingReservation";
+import ConfirmedReservation from "./ConfirmedReservation/ConfirmedReservation";
 
 export {
   OnBoarding,
@@ -44,7 +49,6 @@ export {
   ForgotPassword4,
   Home,
   Timeline,
-  Reservation,
   Notifications,
   Profile,
   ProfileDetail,
@@ -60,4 +64,9 @@ export {
   FAQContent8,
   FeedbackSubmission,
   ScanQR,
+  IndoorNav,
+  ConfirmedReservation,
+  PendingReservation,
+  NoReservation,
+  ScanQRBreakCheckIn,
 };

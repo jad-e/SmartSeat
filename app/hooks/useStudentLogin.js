@@ -16,7 +16,7 @@ export const useStudentLogin = () => {
     setIsLoading(true);
     setError(null);
 
-    fetch("http://192.168.0.150:4000/api/studentUser/login", {
+    fetch("http://192.168.0.151:4000/api/studentUser/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
