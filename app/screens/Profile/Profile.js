@@ -50,20 +50,24 @@ const Profile = () => {
 
   React.useEffect(() => {
     const fetchStudentData = async () => {
-      const response = await fetch(
-        "http://192.168.0.150:4000/api/studentData/1",
-        {
-          headers: {
-            Authorization: `Bearer ${studentUser.token}`,
-          },
+      try {
+        const response = await fetch(
+          "http://192.168.0.151:4000/api/studentData/1",
+          {
+            headers: {
+              Authorization: `Bearer ${studentUser.token}`,
+            },
+          }
+        ); //4000 is the port that server is listening to
+
+        const json = await response.json(); //parsed into an array of objects
+
+        //check if response if ok (data get back successfully)
+        if (response.ok) {
+          dispatch({ type: "SET_STUDENT", payload: json });
         }
-      ); //4000 is the port that server is listening to
-
-      const json = await response.json(); //parsed into an array of objects
-
-      //check if response if ok (data get back successfully)
-      if (response.ok) {
-        dispatch({ type: "SET_STUDENT", payload: json });
+      } catch (error) {
+        console.error(error);
       }
     };
 

@@ -3,12 +3,48 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
 //Screens
-import { Home, Reservation, Notifications, Profile } from "../screens";
+import {
+  Home,
+  Notifications,
+  Profile,
+  NoReservation,
+  PendingReservation,
+  ConfirmedReservation,
+} from "../screens";
 import { COLORS, FONTS, icons } from "../constants";
+
+//context
+import { useStudentDataContext } from "../hooks/useStudentDataContext";
+import { useStudentAuthContext } from "../hooks/useStudentAuthContext";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
+  const { studentData, dispatch } = useStudentDataContext();
+  const { studentUser } = useStudentAuthContext();
+
+  React.useEffect(() => {
+    const fetchStudentData = async () => {
+      const response = await fetch(
+        "http://192.168.0.151:4000/api/studentData/1",
+        {
+          headers: {
+            Authorization: `Bearer ${studentUser.token}`,
+          },
+        }
+      ); //4000 is the port that server is listening to
+
+      const json = await response.json(); //parsed into an array of objects
+
+      //check if response if ok (data get back successfully)
+      if (response.ok) {
+        dispatch({ type: "SET_STUDENT", payload: json });
+      }
+    };
+
+    fetchStudentData();
+  }, [dispatch]); //only fires once when the Student page first renders
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -59,7 +95,13 @@ const Tabs = () => {
 
       <Tab.Screen
         name="Reservation"
-        component={Reservation}
+        component={
+          studentData && studentData.seatStat.includes("Pending Reservation")
+            ? PendingReservation
+            : studentData && studentData.seatStat.includes("Reserved")
+            ? ConfirmedReservation
+            : NoReservation
+        }
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>

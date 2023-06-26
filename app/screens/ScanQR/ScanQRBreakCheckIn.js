@@ -1,3 +1,6 @@
+//short break
+//lunch break
+//dinner break
 import {
   View,
   Text,
@@ -56,7 +59,7 @@ function FocusAwareStatusBar(props) {
   return isFocused ? <StatusBar {...props} /> : null;
 }
 
-const ScanQR = ({ navigation, route }) => {
+const ScanQRBreakCheckIn = ({ navigation, route }) => {
   const { code } = route.params;
 
   const { studySpace, dispatch } = useStudySpaceContext();
@@ -136,62 +139,25 @@ const ScanQR = ({ navigation, route }) => {
 
           if (scannedBarcode.rawValue === code) {
             //check that code same with seat number, if yes:
-            //update studentData: seatStat to "Reserved_seatnumber", checkInEndTime to "", delayed to false, add rev info to timeline
+            //update studentData: longbreakEndTime to "", shortbreak endtime to =""
 
             const date = new Date();
-
-            const d1 = new Date();
-            const d2 = new Date();
-            const d3 = new Date();
-            const d4 = new Date();
-            const d5 = new Date();
-            const d6 = new Date();
-
-            const unique =
-              "" +
-              d1.getFullYear() +
-              (d2.getMonth() + 1) +
-              d3.getDate() +
-              d4.getHours() +
-              d5.getMinutes() +
-              d6.getSeconds();
-
             const time = new Date().toLocaleTimeString("en-US", {
               hour12: false,
               hour: "numeric",
               minute: "numeric",
             });
 
-            //rev obj
-            const rev = {
-              id: parseInt(unique), //yearmonthdayhrminsecs
-              type: 2,
-              timeStart: time,
-              timeEnd: "",
-              date: moment(date).format("D MMMM Y"),
-              venue: studentData.seatStat.split("_")[1],
-              seat: studentData.seatStat.split("_")[2],
-            };
-
-            let tempArr = studentData.timeline.slice();
-            tempArr.push(rev);
-
             //make a student object
             const student = {
               profImg: studentData.profImg,
-              seatStat:
-                "Reserved_" +
-                studentData.seatStat.split("_")[1] +
-                "_" +
-                studentData.seatStat.split("_")[2] +
-                "_" +
-                time,
-              checkInEndTime: "",
+              seatStat: studentData.seatStat,
+              checkInEndTime: student.checkInEndTime,
               shortBreakEndTime: "",
               longBreakEndTime: "",
-              reserveNum: studentData.reserveNum + 1,
-              delayed: false,
-              timeline: tempArr,
+              reserveNum: studentData.reserveNum,
+              delayed: studentData.delayed,
+              timeline: studentData.timeline,
               dinnerBreakCount: studentData.dinnerBreakCount,
               lunchBreakCount: studentData.lunchBreakCount,
               shortBreakCount: studentData.shortBreakCount,
@@ -271,54 +237,18 @@ const ScanQR = ({ navigation, route }) => {
               }
 
               if (response.ok) {
-                //1. ADD TO RESERVATION LIST
-                //make a reservation object
-                const reservation = {
-                  username: studentData.username,
-                  name: studentData.name,
-                  timeStart: time,
-                  timeEnd: "",
-                  date: moment(date).format("D MMMM Y"),
-                  venue: studentData.seatStat.split("_")[1],
-                  seat: studentData.seatStat.split("_")[2],
-                };
+                dispatch({ type: "EDIT_STUDYSPACE", payload: json });
 
-                const response = await fetch(
-                  "http://192.168.0.151:4000/api/reservation/",
-                  {
-                    method: "POST",
-                    body: JSON.stringify(reservation), //changes the object into a json string
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                  }
+                ToastAndroid.showWithGravityAndOffset(
+                  "Checked-in to seat successfully.",
+                  ToastAndroid.LONG,
+                  ToastAndroid.BOTTOM,
+                  0,
+                  250
                 );
 
-                const json = await response.json();
-
-                if (!response.ok) {
-                  ToastAndroid.showWithGravityAndOffset(
-                    json.error,
-                    ToastAndroid.LONG,
-                    ToastAndroid.BOTTOM,
-                    0,
-                    250
-                  );
-                }
-
-                if (response.ok) {
-                  dispatch({ type: "EDIT_STUDYSPACE", payload: json });
-                  ToastAndroid.showWithGravityAndOffset(
-                    "Checked-in to seat successfully.",
-                    ToastAndroid.LONG,
-                    ToastAndroid.BOTTOM,
-                    0,
-                    250
-                  );
-
-                  //navigate back to reservation page?
-                  navigation.navigate("Reservation");
-                }
+                //navigate back to reservation page?
+                navigation.navigate("Reservation");
               }
             }
           } else {
@@ -484,4 +414,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScanQR;
+export default ScanQRBreakCheckIn;

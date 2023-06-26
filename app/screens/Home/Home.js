@@ -43,6 +43,9 @@ const { appname } = images;
 
 //context
 import { useStudentDataContext } from "../../hooks/useStudentDataContext";
+import { useStudentAuthContext } from "../../hooks/useStudentAuthContext";
+import { useStudySpaceContext } from "../../hooks/useStudySpaceContext";
+import { useCustomizationContext } from "../../hooks/useCustomizationContext";
 
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
@@ -57,104 +60,147 @@ const Home = () => {
   // 3: drinks allowed, 30: drinks not allowed
 
   const { studentData, dispatch } = useStudentDataContext();
+  const { studentUser } = useStudentAuthContext();
+  const { studySpace, dispatch: dispatchSpaces } = useStudySpaceContext();
+  const { customization, dispatch: dispatchCust } = useCustomizationContext();
 
   React.useEffect(() => {
     const fetchStudentData = async () => {
-      const response = await fetch(
-        "http://192.168.0.150:4000/api/studentData/1",
-        {
-          headers: {
-            Authorization: `Bearer ${studentUser.token}`,
-          },
+      try {
+        const response = await fetch(
+          "http://192.168.0.151:4000/api/studentData/1",
+          {
+            headers: {
+              Authorization: `Bearer ${studentUser.token}`,
+            },
+          }
+        );
+
+        const json = await response.json(); //parsed into an array of objects
+
+        //check if response if ok (data get back successfully)
+        if (response.ok) {
+          dispatch({ type: "SET_STUDENT", payload: json });
         }
-      ); //4000 is the port that server is listening to
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-      const json = await response.json(); //parsed into an array of objects
+    const fetchStudySpaces = async () => {
+      try {
+        const response = await fetch(
+          "http://192.168.0.151:4000/api/studySpace/"
+        ); //4000 is the port that server is listening to
 
-      //check if response if ok (data get back successfully)
-      if (response.ok) {
-        dispatch({ type: "SET_STUDENT", payload: json });
+        const json = await response.json(); //parsed into an array of objects
+
+        //check if response if ok (data get back successfully)
+        if (response.ok) {
+          dispatchSpaces({ type: "SET_STUDYSPACES", payload: json });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const fetchCustomization = async () => {
+      try {
+        const response = await fetch(
+          "http://192.168.0.151:4000/api/customization/648d897e2c51433d55f5e747"
+        ); //4000 is the port that server is listening to
+
+        const json = await response.json(); //parsed into an array of objects
+
+        //check if response if ok (data get back successfully)
+        if (response.ok) {
+          dispatchCust({ type: "SET_CUSTOMIZATION", payload: json });
+        }
+      } catch (error) {
+        console.error(error);
       }
     };
 
     fetchStudentData();
-  }, [dispatch]); //only fires once when the Student page first renders
+    fetchStudySpaces();
+    fetchCustomization();
+  }, [dispatch, dispatchSpaces, dispatchCust]); //only fires once when the Home page first renders
 
-  const studySpacesData = [
-    {
-      id: 1,
-      title: "Peking Library",
-      address: "5 Yiheyuan Rd, Haidian District",
-      freeSeats: 718,
-      totalSeats: 918,
-      floorsData: [{ 0: 195 }, { 1: 169 }, { 2: 167 }, { 3: 178 }, { 4: 82 }],
-      status1: "Open",
-      operatingHours: "24 hours",
-      acceptableBehaviours: [1, 2, 30],
-    },
-    {
-      id: 2,
-      title: "Tsinghua Library",
-      address: "30 Shuangqing Rd, Haidian District",
-      freeSeats: 0,
-      totalSeats: 918,
-      floorsData: [{ 0: 0 }, { 1: 0 }, { 2: 0 }, { 3: 0 }],
-      status1: "Closed",
-      operatingHours: "24 hours",
-      acceptableBehaviours: [10, 20, 30],
-    },
-    {
-      id: 3,
-      title: "Fudan Study Space",
-      address: "220 Handan Rd, Yangpu District",
-      freeSeats: 29,
-      totalSeats: 100,
-      floorsData: [
-        { 0: 195 },
-        { 1: 169 },
-        { 2: 167 },
-        { 3: 178 },
-        { 4: 72 },
-        { 5: 10 },
-      ],
-      status1: "Open",
-      operatingHours: "08:30 - 22:30",
-      acceptableBehaviours: [10, 2, 30],
-    },
-    {
-      id: 4,
-      title: "UCL Science Library",
-      address: "Malet Place, Gower Street, WC1E 6BT",
-      freeSeats: 30,
-      totalSeats: 100,
-      floorsData: [{ 0: 195 }, { 1: 169 }, { 2: 167 }, { 3: 178 }, { 4: 82 }],
-      status1: "Open",
-      operatingHours: "10:30 - 18:00",
-      acceptableBehaviours: [1, 2, 3],
-    },
-    {
-      id: 5,
-      title: "Student Centre 1",
-      address: "27-28 Gordon Square, WC1H 0PP",
-      freeSeats: 59,
-      totalSeats: 100,
-      floorsData: [{ 0: 195 }, { 1: 169 }, { 2: 167 }, { 3: 178 }, { 4: 82 }],
-      status1: "Open",
-      operatingHours: "24 hours",
-      acceptableBehaviours: [10, 2, 3],
-    },
-    {
-      id: 6,
-      title: "Student Centre 2",
-      address: "29-30 Gordon Square, WC1H 0PP",
-      freeSeats: 60,
-      totalSeats: 100,
-      floorsData: [{ 0: 195 }, { 1: 169 }, { 2: 167 }, { 3: 178 }, { 4: 82 }],
-      status1: "Open",
-      operatingHours: "24 hours",
-      acceptableBehaviours: [1, 20, 3],
-    },
-  ];
+  // const studySpacesData = [
+  //   {
+  //     id: 1,
+  //     title: "Peking Library",
+  //     address: "5 Yiheyuan Rd, Haidian District",
+  //     freeSeats: 718,
+  //     totalSeats: 918,
+  //     floorsData: [{ 0: 195 }, { 1: 169 }, { 2: 167 }, { 3: 178 }, { 4: 82 }],
+  //     status1: "Open",
+  //     operatingHours: "24 hours",
+  //     acceptableBehaviours: [1, 2, 30],
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Tsinghua Library",
+  //     address: "30 Shuangqing Rd, Haidian District",
+  //     freeSeats: 0,
+  //     totalSeats: 918,
+  //     floorsData: [{ 0: 0 }, { 1: 0 }, { 2: 0 }, { 3: 0 }],
+  //     status1: "Closed",
+  //     operatingHours: "24 hours",
+  //     acceptableBehaviours: [10, 20, 30],
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Fudan Study Space",
+  //     address: "220 Handan Rd, Yangpu District",
+  //     freeSeats: 29,
+  //     totalSeats: 100,
+  //     floorsData: [
+  //       { 0: 195 },
+  //       { 1: 169 },
+  //       { 2: 167 },
+  //       { 3: 178 },
+  //       { 4: 72 },
+  //       { 5: 10 },
+  //     ],
+  //     status1: "Open",
+  //     operatingHours: "08:30 - 22:30",
+  //     acceptableBehaviours: [10, 2, 30],
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "UCL Science Library",
+  //     address: "Malet Place, Gower Street, WC1E 6BT",
+  //     freeSeats: 30,
+  //     totalSeats: 100,
+  //     floorsData: [{ 0: 195 }, { 1: 169 }, { 2: 167 }, { 3: 178 }, { 4: 82 }],
+  //     status1: "Open",
+  //     operatingHours: "10:30 - 18:00",
+  //     acceptableBehaviours: [1, 2, 3],
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "Student Centre 1",
+  //     address: "27-28 Gordon Square, WC1H 0PP",
+  //     freeSeats: 59,
+  //     totalSeats: 100,
+  //     floorsData: [{ 0: 195 }, { 1: 169 }, { 2: 167 }, { 3: 178 }, { 4: 82 }],
+  //     status1: "Open",
+  //     operatingHours: "24 hours",
+  //     acceptableBehaviours: [10, 2, 3],
+  //   },
+  //   {
+  //     id: 6,
+  //     title: "Student Centre 2",
+  //     address: "29-30 Gordon Square, WC1H 0PP",
+  //     freeSeats: 60,
+  //     totalSeats: 100,
+  //     floorsData: [{ 0: 195 }, { 1: 169 }, { 2: 167 }, { 3: 178 }, { 4: 82 }],
+  //     status1: "Open",
+  //     operatingHours: "24 hours",
+  //     acceptableBehaviours: [1, 20, 3],
+  //   },
+  // ];
 
   const navigation = useNavigation();
 
@@ -233,7 +279,7 @@ const Home = () => {
     };
 
     const response = await fetch(
-      "http://192.168.0.150:4000/api/assistanceRequest",
+      "http://192.168.0.151:4000/api/assistanceRequest",
       {
         method: "POST",
         body: JSON.stringify(assistanceRequest), //changes the object into a json string
@@ -271,7 +317,7 @@ const Home = () => {
   //states
   const [bottomSheetState, setBottomSheetState] = React.useState(false); //track the state of the bottomsheet
   const [popUpDialogState, setPopUpDialogState] = React.useState(false); //track the state of the pop up dialog
-  const [studySpaces, setStudySpaces] = React.useState(studySpacesData);
+  //const [studySpaces, setStudySpaces] = React.useState(studySpacesData);
 
   function renderHeader() {
     return (
@@ -458,7 +504,7 @@ const Home = () => {
 
     const renderStudySpaceHeader = () => (
       <View style={{ marginLeft: 20, marginBottom: 10 }}>
-        <Text style={{ ...FONTS.h2c }}>Study Space Availability</Text>
+        <Text style={{ ...FONTS.h2c }}>Library Space Availability</Text>
       </View>
     );
 
@@ -487,7 +533,7 @@ const Home = () => {
             marginRight: 15,
           }}
         >
-          {item.title}
+          {item.name}
         </Text>
 
         {/* address */}
@@ -513,36 +559,27 @@ const Home = () => {
           }}
         >
           <Image
-            source={
-              item.acceptableBehaviours[0] == 1 ? icons.chat : icons.no_chat
-            }
+            source={item.isTalk ? icons.chat : icons.no_chat}
             style={{
-              tintColor:
-                item.acceptableBehaviours[0] == 1 ? COLORS.green : COLORS.red,
+              tintColor: item.isTalk ? COLORS.green : COLORS.red,
               width: 18,
               height: 18,
               marginRight: 10,
             }}
           />
           <Image
-            source={
-              item.acceptableBehaviours[1] == 2 ? icons.food : icons.no_food
-            }
+            source={item.isEat ? icons.food : icons.no_food}
             style={{
-              tintColor:
-                item.acceptableBehaviours[1] == 2 ? COLORS.green : COLORS.red,
+              tintColor: item.isEat ? COLORS.green : COLORS.red,
               width: 18,
               height: 18,
               marginRight: 10,
             }}
           />
           <Image
-            source={
-              item.acceptableBehaviours[2] == 3 ? icons.drink : icons.no_drink
-            }
+            source={item.isDrink ? icons.drink : icons.no_drink}
             style={{
-              tintColor:
-                item.acceptableBehaviours[2] == 3 ? COLORS.green : COLORS.red,
+              tintColor: item.isDrink ? COLORS.green : COLORS.red,
               width: 18,
               height: 18,
               marginRight: 10,
@@ -586,10 +623,10 @@ const Home = () => {
           <View
             style={{
               backgroundColor:
-                (item.freeSeats / item.totalSeats) * 100 >= 60
+                (item.availableSeats / item.totalSeats) * 100 >= 60
                   ? COLORS.green
-                  : (item.freeSeats / item.totalSeats) * 100 >= 30 &&
-                    (item.freeSeats / item.totalSeats) * 100 <= 59
+                  : (item.availableSeats / item.totalSeats) * 100 >= 30 &&
+                    (item.availableSeats / item.totalSeats) * 100 <= 59
                   ? COLORS.orange
                   : COLORS.red,
               borderRadius: 5,
@@ -607,8 +644,7 @@ const Home = () => {
           </View>
 
           <Text style={{ ...FONTS.body4 }}>
-            {item.freeSeats} free out of {item.totalSeats} (Floor: Free - 0:
-            195, 1: 169, 2: 167, 3: 178, 4: 82)
+            {item.availableSeats} free out of {item.totalSeats}
           </Text>
         </View>
 
@@ -652,11 +688,11 @@ const Home = () => {
           <Text style={{ ...FONTS.body4 }}>
             <Text
               style={{
-                color: item.status1 == "Open" ? COLORS.green : COLORS.red,
+                color: item.isOpen ? COLORS.green : COLORS.red,
                 ...FONTS.body4,
               }}
             >
-              {item.status1}
+              {item.isOpen ? "Open" : "Closed"}
             </Text>{" "}
             now
           </Text>
@@ -686,7 +722,35 @@ const Home = () => {
             marginRight: 15,
             justifyContent: "space-between",
           }}
-          onPress={() => navigation.navigate("SeatMap")}
+          onPress={() => {
+            //check
+
+            //before nav into seat map, check if:
+            //-> reservation == falsed (customization context)
+            //-> blacklisted ==  falsed (student data context)
+
+            if (customization.reservationDisabled) {
+              //toast
+              ToastAndroid.showWithGravityAndOffset(
+                "Seat reservation service is unavailable now.",
+                ToastAndroid.LONG,
+                ToastAndroid.BOTTOM,
+                0,
+                250
+              );
+            } else if (studentData.authStat === "Blacklisted") {
+              //toast
+              ToastAndroid.showWithGravityAndOffset(
+                "You are currently blacklisted.",
+                ToastAndroid.LONG,
+                ToastAndroid.BOTTOM,
+                0,
+                250
+              );
+            } else {
+              navigation.navigate("SeatMap");
+            }
+          }} //seat map page
         >
           <Text style={{ ...FONTS.body4 }}>Click here for seat map</Text>
           <Image
@@ -700,8 +764,8 @@ const Home = () => {
     return (
       <FlatList
         ListHeaderComponent={HeaderComponent}
-        data={studySpaces}
-        keyExtractor={(item) => `${item.id}`}
+        data={studySpace}
+        keyExtractor={(item) => `${item._id}`}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
         ListFooterComponent={<View style={{ marginBottom: 65 }}></View>}
@@ -711,7 +775,7 @@ const Home = () => {
 
   return (
     <View style={[styles.container]}>
-      {renderHome()}
+      {studySpace && customization && renderHome()}
 
       {/* more bottom sheet */}
       <BottomModal
